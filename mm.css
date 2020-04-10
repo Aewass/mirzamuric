@@ -36,32 +36,36 @@ body {
 }
 
 .card-body {
-    background-color: #221F1C;  
+    background-color: #221F1C;
 }
 
-a { 
-    color: inherit; 
-} 
-a:visited { 
-    color: inherit; 
-} 
-a:hover { 
-    color: inherit; 
-} 
-a:active { 
-    color: inherit; 
-} 
-a:link { 
-    color: inherit; 
-} 
+a {
+    color: #FEFB00;
+}
+
+a:visited {
+    color: #FEFB00;
+}
+
+a:hover {
+    color: #FEFB00;
+}
+
+a:active {
+    color: #FEFB00;
+}
+
+a:link {
+    color: #FEFB00;
+}
 
 .profile_footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 2.5rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
 @media only screen and (min-width: 767px) {
@@ -75,7 +79,3 @@ a:link {
         display: none;
     }
 }
-
-
-
-
