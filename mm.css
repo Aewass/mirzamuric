@@ -1,0 +1,69 @@
+body {
+    background-color: #221F1C;
+    color: #FEFB00;
+    font-family: monospace;
+}
+
+.profile_img {
+    height: 9rem;
+    width: 7rem;
+    border-radius: 10px;
+    border: 2px solid #FEFB00;
+    display: block;
+    margin: 3rem auto 0.2rem auto;
+}
+
+.profile_text {
+    font-size: 16px;
+}
+
+.carousel {
+    margin-top: 4rem;
+}
+
+.card-row {
+    margin-top: 4rem;
+}
+
+.card {
+    margin: 2rem auto;
+    width: 70%;
+    height: 35vh;
+}
+
+.card-header {
+    background-color: #B9B600;
+}
+
+.card-body {
+    background-color: #221F1C;  
+}
+
+a { 
+    color: inherit; 
+} 
+
+.profile_footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+@media only screen and (min-width: 767px) {
+    .carousel {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-row {
+        display: none;
+    }
+}
+
+
+
+
