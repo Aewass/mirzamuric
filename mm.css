@@ -42,6 +42,18 @@ body {
 a { 
     color: inherit; 
 } 
+a:visited { 
+    color: inherit; 
+} 
+a:hover { 
+    color: inherit; 
+} 
+a:active { 
+    color: inherit; 
+} 
+a:link { 
+    color: inherit; 
+} 
 
 .profile_footer {
   position: fixed;
