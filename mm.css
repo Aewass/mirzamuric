@@ -4,74 +4,34 @@ body {
     font-family: monospace;
 }
 
+.profile_wrapper {
+    margin-top: 10rem;
+}
+
 .profile_img {
-    height: 9rem;
+    height: 7rem;
     width: 7rem;
-    border-radius: 10px;
-    border: 2px solid #FEFB00;
+    border-radius: 50%;
+    border: 2px solid #808080;
     display: block;
-    margin: 3rem auto 0.2rem auto;
+    margin: 3rem auto 0.8rem auto;
+    background: #FEFB00;
 }
 
-.carousel {
-    margin-top: 2rem;
+.profile_text {
+    font-size: 18px;
+    cursor: pointer;
 }
 
-.card-row {
-    margin-top: 2rem;
-}
-
-.card {
-    margin: 2rem auto;
-    width: 70%;
-    height: 35vh;
-}
-
-.card-header {
-    background-color: #B9B600;
-}
-
-.card-body {
-    background-color: #221F1C;
+.profile_work {
+    font-size: 16px;
 }
 
 a {
-    color: #FEFB00;
-}
-
-a:visited {
-    color: #FEFB00;
+    color: #c3c300;
+    cursor: pointer;
 }
 
 a:hover {
-    color: #FEFB00;
-}
-
-a:active {
-    color: #FEFB00;
-}
-
-a:link {
-    color: #FEFB00;
-}
-
-.profile_footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 2.5rem;
-}
-
-@media only screen and (min-width: 767px) {
-    .carousel {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 767px) {
-    .card-row {
-        display: none;
-    }
+    color: yellow;
 }
