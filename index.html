@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>mirzamuric</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="mm.css">
-    <link rel="stylesheet"
-        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
+    <link rel="stylesheet" type="text/css" href="mm.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
 
-<body>
-    <div class="profile_wrapper">
-        <!-- INFO -->
-        <div class="profile_container">
-            <img class="profile_img" src="me.svg" onmouseover="this.src='me2.svg'" onmouseout="this.src='me.svg'"
-                alt="Oops">
-            <div class="text-center profile_text mt-1">
-                <span id="copyText" title="Click to copy!" onclick="copyDivToClipboard()">
-                    mirza_muric@outlook.com</span>
-            </div>
-            <div class="text-center profile_work mt-2">
-                Programming - Writing - Tech Support
-            </div>
-            <div class="text-center profile_text">
-                <span><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/free_mountaineer/"><i
-                            class="lab la-instagram la-3x"></i></a></span>
-                <span><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/mirza.muric"><i
-                            class="lab la-facebook-square la-3x"></i></a></span>
-                <span><a target="_blank" rel="noopener noreferrer"
-                        href="https://www.linkedin.com/in/mirza-muric-85213a180/"><i
-                            class="lab la-linkedin la-3x"></i></a></span>
-            </div>
-
-        </div>
-        <!-- SOCIAL -->
+  <body>
+    <img
+      class="profile-image"
+      src="me.svg"
+      onmouseover="this.src='me2.svg'"
+      onmouseout="this.src='me.svg'"
+      alt="Oops"
+    />
+    <div
+      id="copyText"
+      class="profile-email"
+      title="Click to copy to clipoard!"
+      onclick="copyDivToClipboard()"
+    >
+      mirza_muric@outlook.com
+    </div>
+    <div class="profile-description">Programming | Photography | Adventure</div>
+    <div class="profile-socials">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Instagram"
+        href="https://www.instagram.com/free_mountaineer/"
+        ><img src="./instagram.svg" alt="Instagram"
+      /></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        title="LinkedIn"
+        href="https://www.linkedin.com/in/mirza-muric-85213a180/"
+        ><img src="./linkedin.svg" alt="linkedin"
+      /></a>
     </div>
 
     <script src="mm.js"></script>
-</body>
-
+  </body>
 </html>
