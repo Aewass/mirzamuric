@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Nav, About, Technologies, Experience, Contact } from '../components';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mirza Muric",
+  "url": "https://your-domain.com",
+  "jobTitle": "Frontend Developer",
+  "knowsAbout": ["Angular", "TypeScript", "Web Development"],
+  "description": "Frontend Developer specializing in Angular and modern web technologies",
+  "sameAs": [
+    "https://www.linkedin.com/in/mirza-muric-85213a180/",
+    "https://instagram.com/free_mountaineer"
+  ]
+};
+---
+
+<Layout>
+	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+	<Nav />
+	<section id="about">
+		<About />
+	</section>
+
+	<section id="technologies">
+		<Technologies />
+	</section>
+
+	<section id="experience">
+		<Experience />
+	</section>
+
+	<section id="contact">
+		<Contact />
+	</section>
+</Layout>

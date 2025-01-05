@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import { Menu, X } from 'lucide-astro';
+import logo from '../assets/logo.svg';
+
+interface MenuItem {
+  text?: string;
+  href: string;
+  image?: ImageMetadata;
+}
+
+const menuItems: MenuItem[] = [
+  { text: 'About', href: '#about' },
+  { text: 'Technologies', href: '#technologies' },
+  { image: logo, href: '#about' },
+  { text: 'Experience', href: '#experience' },
+  { text: 'Contact', href: '#contact' },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50">
+  <div class="max-w-5xl mx-auto px-4 py-5">
+    <!-- Mobile: Logo and Burger -->
+    <div class="flex md:hidden justify-between items-center">
+      {menuItems.find(item => item.image) && (
+        <a href="#about" class="flex items-center">
+          <Image src={logo} alt="Your Logo" class="h-8 w-auto" />
+        </a>
+      )}
+      <button 
+        id="menuButton"
+        class="p-2"
+        aria-label="Menu"
+      >
+        <Menu id="menuIcon" class="w-6 h-6" />
+        <X id="closeIcon" class="w-6 h-6 hidden" />
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden">
+      <ul class="flex flex-col items-center gap-6 py-8">
+        {menuItems.map((item) => (
+          !item.image && (
+            <li>
+              <a 
+                href={item.href}
+                class="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              >
+                {item.text}
+              </a>
+            </li>
+          )
+        ))}
+      </ul>
+    </div>
+
+    <!-- Desktop: Full menu -->
+    <ul class="hidden md:flex justify-center items-center gap-8">
+      {menuItems.map((item) => (
+        <li>
+          {item.image ? (
+            <a href={item.href} class="flex items-center mx-4">
+              <Image src={item.image!} alt="Your Logo" class="h-8 w-auto" />
+            </a>
+          ) : (
+            <a 
+              href={item.href}
+              class="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              {item.text}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const menuButton = document.getElementById('menuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+
+  if (menuButton && mobileMenu && menuIcon && closeIcon) {
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+  }
+</script>

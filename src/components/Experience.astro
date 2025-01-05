@@ -1,0 +1,76 @@
+---
+import { Building2, Calendar } from 'lucide-astro'
+
+interface Experience {
+  company: string;
+  position: string;
+  period: string;
+  description: string[];
+  technologies: string[];
+}
+
+const experiences: Experience[] = [
+  {
+    company: "Evoila Bosnia",
+    position: "Frontend Developer",
+    period: "2022 - Present",
+    description: [
+      "Developed enterprise-scale Angular applications",
+      "Implemented responsive designs using modern CSS frameworks",
+      "Collaborated with cross-functional teams to deliver high-quality solutions",
+      "Mentored junior developers and conducted code reviews"
+    ],
+    technologies: ["Angular", "TypeScript", "Tailwind", "GraphQL", "Blazor", "REST"]
+  },
+  {
+    company: "TNTSoft",
+    position: "Frontend Developer",
+    period: "2019 - 2022",
+    description: [
+      "Developed and maintained multiple client-facing applications",
+      "Built custom UI components and design systems",
+      "Optimized application performance and user experience",
+      "Integrated third-party APIs and services"
+    ],
+    technologies: ["Angular", "JavaScript", "SCSS", "REST", "Ionic", "ElectronJS"]
+  }
+];
+---
+
+<section class="max-w-5xl mx-auto px-4 py-20">
+  <h2 class="text-3xl font-bold text-center mb-12">Experience</h2>
+
+  <div class="space-y-8">
+    {experiences.map((exp) => (
+      <div class="p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <Building2 class="w-5 h-5 stroke-gray-600" />
+              <h3 class="text-xl font-semibold">{exp.company}</h3>
+            </div>
+            <p class="text-gray-600 font-medium">{exp.position}</p>
+          </div>
+          <div class="flex items-center gap-1 text-gray-500">
+            <Calendar class="w-4 h-4" />
+            <span class="text-sm">{exp.period}</span>
+          </div>
+        </div>
+
+        <ul class="list-disc list-inside space-y-2 mb-4 text-gray-600">
+          {exp.description.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+
+        <div class="flex flex-wrap gap-2">
+          {exp.technologies.map(tech => (
+            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
