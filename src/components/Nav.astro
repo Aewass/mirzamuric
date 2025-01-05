@@ -22,7 +22,7 @@ const menuItems: MenuItem[] = [
     <!-- Mobile: Logo and Burger -->
     <div class="flex md:hidden justify-between items-center">
       <a href="#home" class="flex items-center">
-        <Image src={logo} alt="Your Logo" class="h-8 w-auto" />
+        <Image loading="eager" src={logo} alt="Your Logo" class="h-8 w-auto" />
       </a>
       <button 
         id="menuButton"
@@ -53,7 +53,7 @@ const menuItems: MenuItem[] = [
     <!-- Desktop: Full menu -->
     <div class="hidden md:flex items-center justify-between">
       <a href="#home" class="flex items-center">
-        <Image src={logo} alt="Your Logo" class="h-8 w-auto" />
+        <Image loading="eager" src={logo} alt="Your Logo" class="h-8 w-auto" />
       </a>
       
       <ul class="flex items-center gap-8">
