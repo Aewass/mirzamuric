@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { ChevronLeft, Home } from 'lucide-astro';
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => 
+  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog" description="Articles about web development, frontend technologies, and software engineering">
+  <div class="max-w-3xl mx-auto px-4 py-20">
+    <div class="flex items-center gap-2 min-w-0">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors shrink-0"
+        >
+          <Home class="w-5 h-5" />
+          <span>Home</span>
+        </a>
+        <ChevronLeft class="w-5 h-5 text-gray-400 shrink-0" />
+        <a 
+          href="/blog" 
+          class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors shrink-0"
+        >
+          Blog
+        </a>
+    </div>
+    <h1 class="text-4xl font-bold mb-12 text-center">Blog</h1>
+    <div class="grid gap-8 md:grid-cols-2">
+      {sortedPosts.map((post: CollectionEntry<'blog'>) => (
+        <a href={`/blog/${post.slug}`} class="group">
+          <article class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <h2 class="text-2xl font-bold mb-2 group-hover:text-gray-600 transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="text-gray-600 mb-4">{post.data.description}</p>
+            <time datetime={post.data.pubDate.toISOString()} class="text-sm text-gray-500">
+              {post.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </article>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

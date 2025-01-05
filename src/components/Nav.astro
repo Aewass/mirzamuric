@@ -6,14 +6,13 @@ import logo from '../assets/logo.svg';
 interface MenuItem {
   text?: string;
   href: string;
-  image?: ImageMetadata;
 }
 
 const menuItems: MenuItem[] = [
-  { text: 'About', href: '#about' },
+  { text: 'Blog', href: '#blog' },
   { text: 'Technologies', href: '#technologies' },
-  { image: logo, href: '#about' },
   { text: 'Experience', href: '#experience' },
+  { text: 'About', href: '#about' },
   { text: 'Contact', href: '#contact' },
 ];
 ---
@@ -22,11 +21,9 @@ const menuItems: MenuItem[] = [
   <div class="max-w-5xl mx-auto px-4 py-5">
     <!-- Mobile: Logo and Burger -->
     <div class="flex md:hidden justify-between items-center">
-      {menuItems.find(item => item.image) && (
-        <a href="#about" class="flex items-center">
-          <Image src={logo} alt="Your Logo" class="h-8 w-auto" />
-        </a>
-      )}
+      <a href="#home" class="flex items-center">
+        <Image src={logo} alt="Your Logo" class="h-8 w-auto" />
+      </a>
       <button 
         id="menuButton"
         class="p-2"
@@ -41,39 +38,37 @@ const menuItems: MenuItem[] = [
     <div id="mobileMenu" class="hidden md:hidden">
       <ul class="flex flex-col items-center gap-6 py-8">
         {menuItems.map((item) => (
-          !item.image && (
-            <li>
-              <a 
-                href={item.href}
-                class="text-gray-600 hover:text-gray-900 transition-colors text-lg"
-              >
-                {item.text}
-              </a>
-            </li>
-          )
+          <li>
+            <a 
+              href={item.href}
+              class="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+            >
+              {item.text}
+            </a>
+          </li>
         ))}
       </ul>
     </div>
 
     <!-- Desktop: Full menu -->
-    <ul class="hidden md:flex justify-center items-center gap-8">
-      {menuItems.map((item) => (
-        <li>
-          {item.image ? (
-            <a href={item.href} class="flex items-center mx-4">
-              <Image src={item.image!} alt="Your Logo" class="h-8 w-auto" />
-            </a>
-          ) : (
+    <div class="hidden md:flex items-center justify-between">
+      <a href="#home" class="flex items-center">
+        <Image src={logo} alt="Your Logo" class="h-8 w-auto" />
+      </a>
+      
+      <ul class="flex items-center gap-8">
+        {menuItems.map((item) => (
+          <li>
             <a 
               href={item.href}
               class="text-gray-600 hover:text-gray-900 transition-colors"
             >
               {item.text}
             </a>
-          )}
-        </li>
-      ))}
-    </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </nav>
 

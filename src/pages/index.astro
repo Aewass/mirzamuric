@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Nav, About, Technologies, Experience, Contact } from '../components';
+import { Nav, Header, Blog, About, Technologies, Experience, Contact } from '../components';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -21,8 +21,13 @@ const jsonLd = {
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 	<Nav />
-	<section id="about">
-		<About />
+
+	<section id="home">
+		<Header />
+	</section>
+
+	<section id="blog">
+		<Blog />
 	</section>
 
 	<section id="technologies">
@@ -33,7 +38,12 @@ const jsonLd = {
 		<Experience />
 	</section>
 
+	<section id="about">
+		<About />
+	</section>
+
 	<section id="contact">
 		<Contact />
 	</section>
+
 </Layout>

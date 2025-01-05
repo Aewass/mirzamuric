@@ -1,39 +1,54 @@
 ---
-import { Image } from 'astro:assets';
-// import { Download } from 'lucide-astro';
-import avatar from '../assets/avatar.png';
+import { Layout, Mountain, Camera, MountainSnow } from 'lucide-astro';
+
+interface Interest {
+  name: string;
+  icon: typeof Layout;
+}
+
+const interests: Interest[] = [
+  { name: 'Mountaineering', icon: MountainSnow },
+  { name: 'Rock Climbing', icon: Mountain },
+  { name: 'Photography', icon: Camera },
+];
 ---
 
-<header class="max-w-5xl mx-auto px-4 py-20">
-  <div class="flex flex-col md:flex-row md:justify-around items-center gap-8 mt-20">
-    <div class="w-48 md:w-64">
-      <Image
-        src={avatar}
-        alt="Profile Avatar"
-        class="rounded-full w-full h-full object-cover"
-      />
+<section class="max-w-5xl mx-auto px-4 py-20">
+  <h2 class="text-3xl font-bold text-center mb-16">About Me</h2>
+
+  <div class="space-y-16">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-semibold mb-6 text-gray-800">My Journey</h3>
+      <div class="space-y-4 text-gray-600 leading-relaxed">
+        <p>
+          My programming journey began in elementary school, where I took my first steps with BASIC, sparking an early interest in technology. Even managed to end up 3rd in a local programming competition against other kids that were using C++. To this day I still can't figure why our teacher didn't let us use C++.
+        </p>
+        <p>
+          In high school, I had the opportunity to explore web development through coursework, learning the fundamentals of HTML, CSS, and JavaScript. Although my path then led me away from programming for several years, my interest in technology never faded.
+        </p>
+        <p>
+          After college, I found my way back to my programming when I accepted a position as a web developer at TNTSoft, where I've been able to fully commit myself to the craft.
+        </p>
+      </div>
     </div>
 
-    <div class="max-w-lg text-center md:text-left">
-      <h1 class="text-4xl font-bold mb-4">Hi, I'm Mirza</h1>
-      <p class="text-gray-600 leading-relaxed mb-4">
-        A passionate <b>Frontend Developer</b> with a keen eye for design. I specialize in building 
-        sophisticated web applications, transforming complex requirements into intuitive interfaces 
-        while maintaining clean, scalable code architecture.
-      </p>
-      
-      <!-- <p class="text-gray-600 leading-relaxed mb-6">
-        If you would like to go more in-depth about me - 
-        <br/>
-        
-        <a
-          href="/path-to-your-cv.pdf"
-          download
-          class="text-gray-900 relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gray-900 after:origin-right after:scale-x-0 hover:after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300"
-        >
-        you can download my CV here  <Download class="w-4 h-4 ml-0.5 inline-block mb-1" />.
-        </a>
-      </p> -->
+    <div class="border-t border-gray-100 pt-16">
+      <h3 class="text-2xl font-semibold mb-8 text-gray-800 text-center">Beyond the Code</h3>
+      <div class="max-w-2xl mx-auto">
+        <p class="text-gray-600 text-center mb-8">
+          When I'm not writing code, you'll find me seeking adventure in the great outdoors.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {interests.map(({ name, icon: Icon }) => (
+            <div class="text-center">
+              <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-50 mb-3">
+                <Icon class="w-6 h-6 stroke-gray-700" />
+              </div>
+              <p class="text-gray-700 font-medium">{name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
-</header>
+</section>
