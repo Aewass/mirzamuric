@@ -16,15 +16,26 @@ import avatar from '../assets/avatar.png';
 
     <div class="max-w-lg text-center md:text-left md:mt-8">
       <h1 class="text-4xl font-bold mb-4">Hi, I'm Mirza</h1>
-      <p class="text-gray-600 leading-relaxed mb-4">
+      <p class="text-gray-600 leading-relaxed mb-6">
         A passionate <b>Frontend Developer</b> with a keen eye for design. I specialize in building 
         sophisticated web applications, transforming complex requirements into intuitive interfaces 
         while maintaining clean, scalable code architecture.
       </p>
-      <p class="text-gray-600">
-        View my <span class="font-semibold">resume</span> in an <a href="/cv" class="text-gray-900 font-semibold hover:underline">interactive format</a> or 
-        <a href="/mirza-muric-cv.pdf" download class="text-gray-900 font-semibold hover:underline">get the PDF version</a>.
-      </p>
+      <div class="flex gap-4 justify-center md:justify-start">
+        <a 
+          href="/cv" 
+          class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-all text-sm border border-gray-200"
+        >
+          View CV
+        </a>
+        <a 
+          href="/mirza-muric-cv.pdf" 
+          download
+          class="px-4 py-2 bg-gradient-to-r from-gray-900 to-gray-700 text-white rounded-lg hover:from-gray-800 hover:to-gray-600 transition-all text-sm"
+        >
+          Download CV
+        </a>
+      </div>
     </div>
   </div>
 </header>
