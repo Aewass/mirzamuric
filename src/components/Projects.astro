@@ -1,5 +1,4 @@
 ---
-import { Github } from 'lucide-astro';
 import medicooral from '../assets/medicooral.png';
 import merjem from '../assets/merjemdurakovic.png';
 import passwordGenerator from '../assets/passwordgenerator.png';
@@ -51,7 +50,6 @@ const allProjects: Project[] = [
     description: "A secure password generator with customizable options for length and character types. Features a desktop ui interface and copy-to-clipboard functionality. Fun fact: This was my first programming project, built while learning Python!",
     image: passwordGenerator,
     technologies: ["JavaScript", "CSS", "HTML"],
-    githubUrl: "https://github.com/Aewass/Python-Password-Generator-w-TKinter-GUI",
     liveUrl: "https://github.com/Aewass/Python-Password-Generator-w-TKinter-GUI",
     isWebsite: false
   },
@@ -60,7 +58,6 @@ const allProjects: Project[] = [
     description: "A fun project that translates CSS properties into Bosnian language, allowing developers to write CSS using Bosnian terms. Built as an educational tool and homage to the Bosnian language.",
     image: placeholder,
     technologies: ["JavaScript", "CSS", "NPM Package"],
-    githubUrl: "https://github.com/Aewass/bosnian-css-preprocessor",
     liveUrl: "https://www.npmjs.com/package/bosnian-css-preprocessor",
     isWebsite: false
   },
@@ -130,20 +127,7 @@ const allProjects: Project[] = [
               ))}
             </div>
 
-            {project.githubUrl && (
-              <div class="flex gap-4">
-                <a 
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm group"
-                  aria-label={`View source code of ${project.title}`}
-                >
-                  <Github class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  <span>Source Code</span>
-                </a>
-              </div>
-            )}
+         
           </div>
         </div>
       </div>
