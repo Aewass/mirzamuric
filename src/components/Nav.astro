@@ -23,7 +23,13 @@ const menuItems: MenuItem[] = [
     <!-- Mobile: Logo and Burger -->
     <div class="flex md:hidden justify-between items-center">
       <a href="#home" class="flex items-center">
-        <Image loading="eager" src={logo} alt="Your Logo" class="h-8 w-auto" />
+        <Image 
+          loading="eager" 
+          src={logo} 
+          alt="Your Logo" 
+          class="h-8 w-8 rounded-full transition-transform duration-500" 
+          id="mobileLogo"
+        />
       </a>
       <button 
         id="menuButton"
@@ -54,7 +60,13 @@ const menuItems: MenuItem[] = [
     <!-- Desktop: Full menu -->
     <div class="hidden md:flex items-center justify-between">
       <a href="#home" class="flex items-center">
-        <Image loading="eager" src={logo} alt="Your Logo" class="h-8 w-auto" />
+        <Image 
+          loading="eager" 
+          src={logo} 
+          alt="Your Logo" 
+          class="h-8 w-8 rounded-full transition-transform duration-500" 
+          id="desktopLogo"
+        />
       </a>
       
       <ul class="flex items-center gap-8">
@@ -95,4 +107,14 @@ const menuItems: MenuItem[] = [
       });
     });
   }
+
+  // Add scroll rotation for logos
+  const mobileLogo = document.getElementById('mobileLogo');
+  const desktopLogo = document.getElementById('desktopLogo');
+  
+  window.addEventListener('scroll', () => {
+    const rotation = window.scrollY / 2; // Adjust division factor to control rotation speed
+    if (mobileLogo) mobileLogo.style.transform = `rotate(${rotation}deg)`;
+    if (desktopLogo) desktopLogo.style.transform = `rotate(${rotation}deg)`;
+  });
 </script>

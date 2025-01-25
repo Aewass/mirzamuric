@@ -92,7 +92,7 @@ const allProjects: Project[] = [
               <Image 
                 src={project.image} 
                 alt={`Screenshot of ${project.title}`}
-                class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300 grayscale hover:grayscale-0"
               />
             ) : (
               <>
@@ -108,7 +108,7 @@ const allProjects: Project[] = [
                   <Image 
                     src={project.image} 
                     alt={`Screenshot of ${project.title}`}
-                    class="w-auto h-[80%] object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                    class="w-auto h-[80%] object-contain group-hover:scale-[1.02] transition-transform duration-300 grayscale hover:grayscale-0"
                   />
                 </div>
               </>
@@ -132,12 +132,27 @@ const allProjects: Project[] = [
         </div>
       </div>
     ))}
+
+    {allProjects.length > featuredProjects.length && (
+      <div class="project-card hidden md:block">
+        <div class="h-full flex items-center justify-center">
+          <div 
+            id="seeMore"
+            class="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 font-medium group cursor-pointer"
+          >
+            <span class="flex items-center">See More Projects</span>
+            <span class="w-4 h-4 group-hover:translate-x-1 transition-transform flex items-center">→</span>
+          </div>
+        </div>
+      </div>
+    )}
   </div>
 
+  {/* Mobile "See More" button */}
   {allProjects.length > featuredProjects.length && (
-    <div class="text-center">
+    <div class="text-center md:hidden">
       <div 
-        id="seeMore"
+        id="seeMoreMobile"
         class="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 font-medium group cursor-pointer"
       >
         <span class="flex items-center">See More Projects</span>
@@ -149,16 +164,22 @@ const allProjects: Project[] = [
 
 <script>
   const seeMoreBtn = document.getElementById('seeMore');
+  const seeMoreMobileBtn = document.getElementById('seeMoreMobile');
   const hiddenProjects = document.querySelectorAll('.project-card.hidden');
+  const seeMoreDesktopContainer = seeMoreBtn?.parentElement?.parentElement;
 
-  if (seeMoreBtn) {
-    seeMoreBtn.addEventListener('click', () => {
-      hiddenProjects.forEach(project => {
-        project.classList.remove('hidden');
+  [seeMoreBtn, seeMoreMobileBtn].forEach(btn => {
+    if (btn) {
+      btn.addEventListener('click', () => {
+        hiddenProjects.forEach(project => {
+          project.classList.remove('hidden');
+        });
+        // Hide both desktop and mobile "See More" elements
+        seeMoreDesktopContainer?.classList.add('hidden');
+        seeMoreMobileBtn?.parentElement?.classList.add('hidden');
       });
-      seeMoreBtn.style.display = 'none';
-    });
-  }
+    }
+  });
 </script>
 
 <style>
