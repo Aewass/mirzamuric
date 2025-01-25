@@ -1,4 +1,6 @@
 ---
+import BackgroundPattern from '../components/BackgroundPattern.astro';
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -72,17 +74,18 @@ const canonicalURL = Astro.url;
 			/* Dark mode styles */
 			html.dark {
 				color-scheme: dark;
-				background-color: #000;
+				background-color: rgb(0 0 0 / 20%);
 				color: #f1f5f9;
 			}
 
 			.dark body {
-				background-color: #000;
+				background-color: rgb(0 0 0 / 20%);
 				color: #f1f5f9;
 			}
 		</style>
 	</head>
 	<body>
+		<BackgroundPattern />
 		<slot />
 	</body>
 </html>
