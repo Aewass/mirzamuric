@@ -1,46 +1,49 @@
 ---
-import medicooral from '../assets/medicooral.png';
-import merjem from '../assets/merjemdurakovic.png';
-import passwordGenerator from '../assets/passwordgenerator.png';
-import beerTasting from '../assets/beertasting.png';
-import placeholder from '../assets/placeholder.png';
+import medicooralDesktop from '../assets/medicooral_desktop.png';
+import medicooralMobile from '../assets/medicooral_mobile.png';
+
+import merjemDesktop from '../assets/merjem_desktop.png';
+import merjemMobile from '../assets/merjem_mobile.png';
+
+import beerTastingDesktop from '../assets/beertasting_desktop.png';
+import beerTastingMobile from '../assets/beertasting_mobile.png';
+
 import { Image } from 'astro:assets';
-import { ArrowDown } from 'lucide-astro';
+import { ArrowDown, ExternalLink } from 'lucide-astro';
 
 interface Project {
   title: string;
   description: string;
   image?: ImageMetadata;
+  mobileImage?: ImageMetadata;
   technologies: string[];
   liveUrl?: string;
-  githubUrl?: string;
-  isWebsite?: boolean;
 }
 
 const featuredProjects: Project[] = [
   {
     title: "Merjem Durakovic - Artist",
     description: "A portfolio website for a graphic designer featuring a custom-built animated background effect. The site showcases brand identity projects and UI/UX work with a focus on visual aesthetics and smooth transitions.",
-    image: merjem,
+    image: merjemDesktop,
+    mobileImage: merjemMobile,
     technologies: ["Astro", "Tailwind CSS", "TypeScript", "CSS Animation"],
-    liveUrl: "https://merjemdurakovic.netlify.app",
-    isWebsite: true
+    liveUrl: "https://merjemdurakovic.netlify.app"
   },
   {
     title: "Medicooral-AS",
     description: "A modern dental clinic website built with Astro, featuring multilingual support (BS/EN) and a streamlined contact form. Optimized for performance and SEO, the site showcases a clean, custom design focused on user experience.",
-    image: medicooral,
+    image: medicooralDesktop,
+    mobileImage: medicooralMobile,
     technologies: ["Astro", "TypeScript", "Tailwind CSS", "i18n"],
     liveUrl: "https://medicooral-as.com",
-    isWebsite: true
   },
   {
     title: "BeerTasting App",
     description: "A mobile application for beer enthusiasts to scan, rate, and review beers. Features include EAN barcode scanning, personalized beer cellar, detailed ratings system, and a comprehensive beer database with over 100k users worldwide.",
-    image: beerTasting,
+    image: beerTastingDesktop,
+    mobileImage: beerTastingMobile,
     technologies: ["Ionic", "Angular", "TypeScript", "Mobile Development"],
     liveUrl: "https://beertasting.app/en/",
-    isWebsite: true
   }
 ];
 
@@ -49,18 +52,14 @@ const allProjects: Project[] = [
   {
     title: "Password Generator",
     description: "A secure password generator with customizable options for length and character types. Features a desktop ui interface and copy-to-clipboard functionality. Fun fact: This was my first programming project, built while learning Python!",
-    image: passwordGenerator,
     technologies: ["Python", "TKinter"],
-    liveUrl: "https://github.com/Aewass/Python-Password-Generator-w-TKinter-GUI",
-    isWebsite: false
+    liveUrl: "https://github.com/Aewass/Python-Password-Generator-w-TKinter-GUI"
   },
   {
     title: "Bosnian CSS Preprocessor",
     description: "A fun project that translates CSS properties into Bosnian language, allowing developers to write CSS using Bosnian terms. Built as an educational tool and homage to the Bosnian language.",
-    image: placeholder,
     technologies: ["JavaScript", "CSS", "NPM Package", "PostCSS"],
-    liveUrl: "https://www.npmjs.com/package/bosnian-css-preprocessor",
-    isWebsite: false
+    liveUrl: "https://www.npmjs.com/package/bosnian-css-preprocessor"
   },
 ];
 ---
@@ -68,67 +67,132 @@ const allProjects: Project[] = [
 <section class="max-w-4xl mx-auto px-4 py-20">
   <h2 class="text-3xl font-bold text-start mb-16">Featured Projects</h2>
 
-  <div class="space-y-16" id="projectsGrid">
+  <div class="space-y-32" id="projectsGrid">
     {allProjects.map((project, index) => (
       <div class={`project-card ${index >= featuredProjects.length ? 'hidden' : ''}`}>
-        <div class="group">
-          {project.liveUrl && (
-            <a 
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={`block ${index >= featuredProjects.length ? 'border-l-2 border-gray-200 dark:border-gray-700 pl-6 hover:border-gray-400 dark:hover:border-gray-500 transition-colors' : ''}`}
-              aria-label={`View ${project.title} project`}
-            >
-              {index < featuredProjects.length && (
-                <div class="mb-8 overflow-hidden w-full">
-                  {project.isWebsite ? (
-                    <Image 
-                      src={project.image} 
-                      alt={`Screenshot of ${project.title}`}
-                      class="w-full h-full object-cover grayscale hover:grayscale-0 dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
-                      width={1280}
-                      height={720}
-                    />
-                  ) : (
-                    <div class="relative w-full h-full">
-                      <div class="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white/20 backdrop-blur-md z-0" />
-                      {project.image && (
-                        <Image 
-                          src={project.image} 
-                          alt={`Screenshot of ${project.title}`}
-                          class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110"
-                          width={1280}
-                          height={720}
-                        />
-                      )}
-                      <div class="relative w-full h-full flex items-center justify-center">
-                        <Image 
-                          src={project.image} 
-                          alt={`Screenshot of ${project.title}`}
-                          class="w-auto h-[80%] object-contain group-hover:scale-[1.02] transition-transform duration-300 grayscale hover:grayscale-0"
-                          width={1280}
-                          height={720}
-                        />
+        {index < featuredProjects.length ? (
+          <div class="group">
+            {project.liveUrl && (
+              <a 
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block"
+                aria-label={`View ${project.title} project`}
+              >
+                <div class={`grid lg:grid-cols-5 gap-8 items-center ${index >= featuredProjects.length ? 'border-l-2 border-gray-200 dark:border-gray-700 pl-6 hover:border-gray-400 dark:hover:border-gray-500 transition-colors' : ''}`}>
+                  {/* Left Column: Text Content */}
+                  <div class="lg:col-span-2 space-y-6">
+                    <h3 class="text-2xl font-normal group-hover:text-gray-500 transition-colors">{project.title}</h3>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{project.description}</p>
+                    
+                    <div class="flex flex-wrap gap-x-6 text-sm tracking-wide text-gray-400 dark:text-gray-300">
+                      {project.technologies.map(tech => (
+                        <span class="uppercase text-[11px]">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Column: Image */}
+                  {index < featuredProjects.length && (
+                    <div class="lg:col-span-3 relative">
+                      {/* Desktop Frame */}
+                      <div class="rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900 p-2 pt-5 group-hover:transform group-hover:scale-[1.02] transition-all duration-500">
+                        {/* Minimal Browser Bar */}
+                        <div class="absolute top-1.5 left-3 flex gap-1">
+                          <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+                          <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+                          <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+                        </div>
+                        
+                        {/* Main Image */}
+                        {project.image && (
+                          <div class="overflow-hidden rounded">
+                            <Image 
+                              src={project.image} 
+                            alt={`Screenshot of ${project.title}`}
+                            class="w-full h-full object-cover dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
+                            width={1280}
+                              height={720}
+                            />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Floating Mobile Frame */}
+                      <div class="absolute 
+                        sm:-right-4 sm:-bottom-10 sm:w-1/4
+                        -right-2 -bottom-16 w-1/3
+                        shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] 
+                        rounded-[1.5rem] bg-gray-50 dark:bg-gray-900 p-1.5
+                        group-hover:transform group-hover:translate-x-2 group-hover:-translate-y-2
+                        transition-all duration-500">
+                        <div class="relative rounded-[1.2rem] overflow-hidden">
+                          {/* Minimal Notch */}
+                          <div class="absolute top-0 inset-x-0 h-4 bg-gray-50 dark:bg-gray-900 z-10 flex justify-center items-end">
+                            <div class="w-12 h-2 bg-gray-200 dark:bg-gray-800 rounded-full"></div>
+                          </div>
+                          
+                          {/* Mobile Screenshot */}
+                          {project.mobileImage && (
+                            <Image 
+                              src={project.mobileImage} 
+                              alt={`Mobile view of ${project.title}`}
+                              class="w-full aspect-[9/19] object-cover dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
+                              width={720}
+                              height={1520}
+                            />
+                          )}
+                        </div>
                       </div>
                     </div>
                   )}
                 </div>
-              )}
-              
-              <div class={`${index >= featuredProjects.length ? 'max-w-none' : 'max-w-2xl'}`}>
-                <h3 class="text-2xl font-normal mb-4 group-hover:text-gray-500 transition-colors">{project.title}</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{project.description}</p>
-                
-                <div class="flex flex-wrap gap-x-6 text-sm tracking-wide text-gray-400 dark:text-gray-300">
-                  {project.technologies.map(tech => (
-                    <span class="uppercase text-[11px]">{tech}</span>
-                  ))}
+              </a>
+            )}
+          </div>
+        ) : (
+          <div class="group">
+            {project.liveUrl && (
+              <a 
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block"
+                aria-label={`View ${project.title} project`}
+              >
+                <div class="relative p-6 rounded-2xl bg-gray-50 dark:bg-zinc-900/50 border border-gray-100 dark:border-zinc-800 hover:border-gray-200 dark:hover:border-zinc-700 transition-all group-hover:shadow-lg">
+                  <div class="flex flex-col gap-6">
+                    <div class="space-y-4">
+                      <h3 class="text-xl font-normal group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors">
+                        {project.title}
+                      </h3>
+                      <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-3">
+                      {project.technologies.map(tech => (
+                        <span class="px-3 py-1 text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 rounded-full">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div class="flex items-center gap-2 text-gray-400 dark:text-gray-500">
+                      <ExternalLink class="w-4 h-4" />
+                      <span class="text-sm">View Project</span>
+                    </div>
+                  </div>
+
+                  {/* Subtle gradient overlay */}
+                  <div class="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100/50 dark:to-zinc-800/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                 </div>
-              </div>
-            </a>
-          )}
-        </div>
+              </a>
+            )}
+          </div>
+        )}
       </div>
     ))}
 
@@ -174,5 +238,39 @@ const allProjects: Project[] = [
   .dark .project-card .bg-gradient-to-br {
     --tw-gradient-from: rgb(17 17 17 / 0.8);
     --tw-gradient-to: rgb(0 0 0 / 0.2);
+  }
+
+  /* Add floating animation for mobile frame */
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  /* Add this class to the mobile frame for constant floating animation */
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .floating {
+      animation: none;
+    }
+    
+    .group-hover\:transform,
+    .group-hover\:scale-\[1\.02\],
+    .group-hover\:translate-x-2,
+    .group-hover\:-translate-y-2,
+    .transition-all {
+      transition: none !important;
+      transform: none !important;
+    }
   }
 </style> 
