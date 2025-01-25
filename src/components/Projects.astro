@@ -68,7 +68,7 @@ const allProjects: Project[] = [
 <section class="max-w-4xl mx-auto px-4 py-20">
   <h2 class="text-3xl font-bold text-start mb-16">Featured Projects</h2>
 
-  <div class="space-y-32" id="projectsGrid">
+  <div class="space-y-16" id="projectsGrid">
     {allProjects.map((project, index) => (
       <div class={`project-card ${index >= featuredProjects.length ? 'hidden' : ''}`}>
         <div class="group">
@@ -77,44 +77,46 @@ const allProjects: Project[] = [
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="block"
+              class={`block ${index >= featuredProjects.length ? 'border-l-2 border-gray-200 dark:border-gray-700 pl-6 hover:border-gray-400 dark:hover:border-gray-500 transition-colors' : ''}`}
               aria-label={`View ${project.title} project`}
             >
-              <div class="mb-8 overflow-hidden aspect-[16/9] w-full">
-                {project.isWebsite ? (
-                  <Image 
-                    src={project.image} 
-                    alt={`Screenshot of ${project.title}`}
-                    class="w-full h-full object-cover grayscale hover:grayscale-0 dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
-                    width={1280}
-                    height={720}
-                  />
-                ) : (
-                  <div class="relative w-full h-full">
-                    <div class="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white/20 backdrop-blur-md z-0" />
-                    {project.image && (
-                      <Image 
-                        src={project.image} 
-                        alt={`Screenshot of ${project.title}`}
-                        class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110"
-                        width={1280}
-                        height={720}
-                      />
-                    )}
-                    <div class="relative w-full h-full flex items-center justify-center">
-                      <Image 
-                        src={project.image} 
-                        alt={`Screenshot of ${project.title}`}
-                        class="w-auto h-[80%] object-contain group-hover:scale-[1.02] transition-transform duration-300 grayscale hover:grayscale-0"
-                        width={1280}
-                        height={720}
-                      />
+              {index < featuredProjects.length && (
+                <div class="mb-8 overflow-hidden w-full">
+                  {project.isWebsite ? (
+                    <Image 
+                      src={project.image} 
+                      alt={`Screenshot of ${project.title}`}
+                      class="w-full h-full object-cover grayscale hover:grayscale-0 dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
+                      width={1280}
+                      height={720}
+                    />
+                  ) : (
+                    <div class="relative w-full h-full">
+                      <div class="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white/20 backdrop-blur-md z-0" />
+                      {project.image && (
+                        <Image 
+                          src={project.image} 
+                          alt={`Screenshot of ${project.title}`}
+                          class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110"
+                          width={1280}
+                          height={720}
+                        />
+                      )}
+                      <div class="relative w-full h-full flex items-center justify-center">
+                        <Image 
+                          src={project.image} 
+                          alt={`Screenshot of ${project.title}`}
+                          class="w-auto h-[80%] object-contain group-hover:scale-[1.02] transition-transform duration-300 grayscale hover:grayscale-0"
+                          width={1280}
+                          height={720}
+                        />
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              )}
               
-              <div class="max-w-2xl">
+              <div class={`${index >= featuredProjects.length ? 'max-w-none' : 'max-w-2xl'}`}>
                 <h3 class="text-2xl font-normal mb-4 group-hover:text-gray-500 transition-colors">{project.title}</h3>
                 <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{project.description}</p>
                 
