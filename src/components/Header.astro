@@ -26,14 +26,14 @@ import avatar from '../assets/profile_nocap.svg';
       <div class="flex gap-4 justify-center md:justify-start">
         <a 
           href="/cv" 
-          class="button-light group px-6 py-2.5 bg-gray-100 text-gray-600 rounded-lg text-lg border border-gray-200 relative overflow-hidden"
+          class="button-light group w-[160px] px-6 py-2.5 bg-gray-100 text-gray-600 rounded-lg text-lg border border-gray-200 relative overflow-hidden text-center"
         >
           <span class="relative z-10 group-hover:text-gray-900 transition-colors">View CV</span>
         </a>
         <a 
           href="/mirza-muric-cv.pdf" 
           download
-          class="button-dark group px-6 py-2.5 bg-gradient-to-r from-gray-900 to-gray-700 text-white rounded-lg text-lg relative overflow-hidden"
+          class="button-dark group w-[160px] px-6 py-2.5 bg-gray-800 text-white rounded-lg text-lg border border-gray-700 relative overflow-hidden text-center"
         >
           <span class="relative z-10">Download CV</span>
         </a>
@@ -43,46 +43,24 @@ import avatar from '../assets/profile_nocap.svg';
 </header>
 
 <style>
-  .button-light::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
-    transition: left 0.5s ease;
-  }
-
-  .button-light:hover::before {
-    left: 100%;
+  .button-light {
+    transition: all 0.2s ease;
   }
 
   .button-light:hover {
     background-color: #f3f4f6;
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 
-  .button-dark::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s ease;
-  }
-
-  .button-dark:hover::before {
-    left: 100%;
+  .button-dark {
+    transition: all 0.2s ease;
   }
 
   .button-dark:hover {
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #1f2937;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   .reveal-text {
@@ -107,8 +85,6 @@ import avatar from '../assets/profile_nocap.svg';
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .button-light::before,
-    .button-dark::before,
     .button-light,
     .button-dark {
       transition: none !important;
@@ -121,5 +97,33 @@ import avatar from '../assets/profile_nocap.svg';
     }
   }
 
- 
+  .button-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .button-light:hover::before {
+    left: 100%;
+  }
+
+  .button-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .button-dark:hover::before {
+    left: 100%;
+  }
 </style>
