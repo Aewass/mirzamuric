@@ -16,17 +16,12 @@ const sortedPosts = posts.sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'
       <div class="flex items-center gap-4">
         <a 
           href="/" 
-          class="text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+          class="text-gray-400 hover:text-black dark:hover:text-white transition-colors flex items-center gap-1"
         >
           <Home class="w-5 h-5" />
         </a>
-        <ChevronLeft class="w-5 h-5 text-gray-400 dark:text-gray-500" />
-        <a 
-          href="/blog" 
-          class="text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-        >
-          Blog
-        </a>
+        <span class="text-gray-400 dark:text-gray-500">/</span>
+        <span class="text-gray-400 dark:text-gray-500">Blog</span>
       </div>
     </nav>
 
@@ -66,6 +61,16 @@ const sortedPosts = posts.sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'
           </article>
         </a>
       ))}
+    </div>
+
+    <div class="mt-16">
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+      >
+        <ChevronLeft class="w-5 h-5" />
+        Back to Home
+      </a>
     </div>
   </div>
 </Layout>
