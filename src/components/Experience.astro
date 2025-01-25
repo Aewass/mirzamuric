@@ -38,36 +38,36 @@ const experiences: Experience[] = [
 ---
 
 <section class="max-w-4xl mx-auto px-4 py-20">
-  <h2 class="text-3xl font-bold text-center mb-12">Experience</h2>
+  <h2 class="text-3xl font-bold text-start mb-16">Experience</h2>
 
-  <div class="space-y-8">
+  <div class="space-y-16">
     {experiences.map((exp) => (
-      <div class="p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300">
-        <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+      <div class="group">
+        <div class="flex flex-col sm:flex-row items-start justify-between mb-6">
           <div>
-            <div class="flex items-center gap-2 mb-1">
-              <Building2 class="w-5 h-5 stroke-gray-600" />
-              <h3 class="text-xl font-semibold">{exp.company}</h3>
+            <div class="flex items-center gap-2 mb-2">
+              <Building2 class="w-5 h-5 stroke-gray-400" />
+              <h3 class="text-2xl font-normal group-hover:text-gray-500 transition-colors">{exp.company}</h3>
             </div>
-            <p class="text-gray-600 font-medium">{exp.position}</p>
+            <p class="text-gray-600 dark:text-gray-300">{exp.position}</p>
           </div>
-          <div class="flex items-center gap-1 text-gray-500 mt-2 sm:mt-0">
+          <div class="flex items-center gap-2 text-gray-400 dark:text-gray-300 mt-4 sm:mt-1">
             <Calendar class="w-4 h-4" />
-            <span class="text-sm">{exp.period}</span>
+            <span class="text-sm tracking-wide">{exp.period}</span>
           </div>
         </div>
 
-        <ul class="list-disc list-inside space-y-2 mb-4 text-gray-600">
+        <ul class="space-y-3 mb-6 text-gray-600 dark:text-gray-300 leading-relaxed">
           {exp.description.map(item => (
-            <li>{item}</li>
+            <li class="pl-4 relative before:absolute before:left-0 before:top-[0.6em] before:w-1 before:h-1 before:bg-gray-300">
+              {item}
+            </li>
           ))}
         </ul>
 
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-x-6 text-sm tracking-wide text-gray-400">
           {exp.technologies.map(tech => (
-            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
-              {tech}
-            </span>
+            <span class="uppercase text-[11px]">{tech}</span>
           ))}
         </div>
       </div>

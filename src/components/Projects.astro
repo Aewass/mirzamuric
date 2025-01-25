@@ -5,6 +5,7 @@ import passwordGenerator from '../assets/passwordgenerator.png';
 import beerTasting from '../assets/beertasting.png';
 import placeholder from '../assets/placeholder.png';
 import { Image } from 'astro:assets';
+import { ArrowDown } from 'lucide-astro';
 
 interface Project {
   title: string;
@@ -65,121 +66,94 @@ const allProjects: Project[] = [
 ---
 
 <section class="max-w-4xl mx-auto px-4 py-20">
-  <h2 class="text-3xl font-bold text-center mb-12">Featured Projects</h2>
+  <h2 class="text-3xl font-bold text-start mb-16">Featured Projects</h2>
 
-  <div class="grid gap-8 grid-cols-1 md:grid-cols-2 mb-12" id="projectsGrid">
+  <div class="space-y-32" id="projectsGrid">
     {allProjects.map((project, index) => (
       <div class={`project-card ${index >= featuredProjects.length ? 'hidden' : ''}`}>
-        <div class="group relative rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden h-full flex flex-col">
+        <div class="group">
           {project.liveUrl && (
             <a 
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="absolute inset-0 z-10"
+              class="block"
               aria-label={`View ${project.title} project`}
             >
-              <span class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="px-6 py-2 bg-black text-white text-sm font-medium rounded-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                  View Project
-                </span>
-              </span>
+              <div class="mb-8 overflow-hidden aspect-[16/9] w-full">
+                {project.isWebsite ? (
+                  <Image 
+                    src={project.image} 
+                    alt={`Screenshot of ${project.title}`}
+                    class="w-full h-full object-cover grayscale hover:grayscale-0 dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
+                    width={1280}
+                    height={720}
+                  />
+                ) : (
+                  <div class="relative w-full h-full">
+                    <div class="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white/20 backdrop-blur-md z-0" />
+                    {project.image && (
+                      <Image 
+                        src={project.image} 
+                        alt={`Screenshot of ${project.title}`}
+                        class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110"
+                        width={1280}
+                        height={720}
+                      />
+                    )}
+                    <div class="relative w-full h-full flex items-center justify-center">
+                      <Image 
+                        src={project.image} 
+                        alt={`Screenshot of ${project.title}`}
+                        class="w-auto h-[80%] object-contain group-hover:scale-[1.02] transition-transform duration-300 grayscale hover:grayscale-0"
+                        width={1280}
+                        height={720}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              <div class="max-w-2xl">
+                <h3 class="text-2xl font-normal mb-4 group-hover:text-gray-500 transition-colors">{project.title}</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{project.description}</p>
+                
+                <div class="flex flex-wrap gap-x-6 text-sm tracking-wide text-gray-400 dark:text-gray-300">
+                  {project.technologies.map(tech => (
+                    <span class="uppercase text-[11px]">{tech}</span>
+                  ))}
+                </div>
+              </div>
             </a>
           )}
-          
-          <div class="w-full aspect-[16/9] overflow-hidden relative bg-gray-100">
-            {project.isWebsite ? (
-              <Image 
-                src={project.image} 
-                alt={`Screenshot of ${project.title}`}
-                class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300 grayscale hover:grayscale-0"
-              />
-            ) : (
-              <>
-                <div class="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white/20 backdrop-blur-md z-0" />
-                {project.image && (
-                  <Image 
-                    src={project.image} 
-                    alt={`Screenshot of ${project.title}`}
-                    class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110"
-                  />
-                )}
-                <div class="relative w-full h-full flex items-center justify-center">
-                  <Image 
-                    src={project.image} 
-                    alt={`Screenshot of ${project.title}`}
-                    class="w-auto h-[80%] object-contain group-hover:scale-[1.02] transition-transform duration-300 grayscale hover:grayscale-0"
-                  />
-                </div>
-              </>
-            )}
-          </div>
-          
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-            <p class="text-gray-600 mb-4 text-sm flex-grow">{project.description}</p>
-            
-            <div class="flex flex-wrap gap-2 mb-4">
-              {project.technologies.map(tech => (
-                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-         
-          </div>
         </div>
       </div>
     ))}
 
     {allProjects.length > featuredProjects.length && (
-      <div class="project-card hidden md:block">
-        <div class="h-full flex items-center justify-center">
-          <div 
-            id="seeMore"
-            class="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 font-medium group cursor-pointer"
-          >
-            <span class="flex items-center">See More Projects</span>
-            <span class="w-4 h-4 group-hover:translate-x-1 transition-transform flex items-center">→</span>
-          </div>
-        </div>
-      </div>
+      <a 
+        id="seeMore" class="inline-flex items-center gap-2 text-sm tracking-wider text-gray-400 hover:text-gray-900 dark:hover:text-white uppercase transition-colors mt-16"
+      >
+        View More Projects <ArrowDown class="w-4 h-4" />
+      </a>
     )}
   </div>
-
-  {/* Mobile "See More" button */}
-  {allProjects.length > featuredProjects.length && (
-    <div class="text-center md:hidden">
-      <div 
-        id="seeMoreMobile"
-        class="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 font-medium group cursor-pointer"
-      >
-        <span class="flex items-center">See More Projects</span>
-        <span class="w-4 h-4 group-hover:translate-x-1 transition-transform flex items-center">→</span>
-      </div>
-    </div>
-  )}
 </section>
 
 <script>
   const seeMoreBtn = document.getElementById('seeMore');
-  const seeMoreMobileBtn = document.getElementById('seeMoreMobile');
   const hiddenProjects = document.querySelectorAll('.project-card.hidden');
-  const seeMoreDesktopContainer = seeMoreBtn?.parentElement?.parentElement;
 
-  [seeMoreBtn, seeMoreMobileBtn].forEach(btn => {
-    if (btn) {
-      btn.addEventListener('click', () => {
-        hiddenProjects.forEach(project => {
-          project.classList.remove('hidden');
-        });
-        // Hide both desktop and mobile "See More" elements
-        seeMoreDesktopContainer?.classList.add('hidden');
-        seeMoreMobileBtn?.parentElement?.classList.add('hidden');
+  if (seeMoreBtn) {
+    seeMoreBtn.addEventListener('click', () => {
+      // Show all hidden projects
+      hiddenProjects.forEach(project => {
+        project.classList.remove('hidden');
       });
-    }
-  });
+      // Remove the "View More" button
+      seeMoreBtn.remove();
+    });
+  }
 </script>
 
 <style>
@@ -193,5 +167,10 @@ const allProjects: Project[] = [
     .group:active .scale-100 {
       transform: scale(1.02);
     }
+  }
+
+  .dark .project-card .bg-gradient-to-br {
+    --tw-gradient-from: rgb(17 17 17 / 0.8);
+    --tw-gradient-to: rgb(0 0 0 / 0.2);
   }
 </style> 

@@ -9,4 +9,18 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: "https://mirzamuric.com",
   integrations: [tailwind(), sitemap(), mdx()],
+  output: "static",
+  server: {
+    headers: {
+      // Only apply no-cache headers in development
+      ...(process.env.NODE_ENV === "development"
+        ? {
+            "Cache-Control":
+              "no-store, no-cache, must-revalidate, proxy-revalidate",
+            Pragma: "no-cache",
+            Expires: "0",
+          }
+        : {}),
+    },
+  },
 });

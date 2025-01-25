@@ -30,27 +30,29 @@ const contacts: ContactLink[] = [
 ];
 ---
 
-<footer class="bg-gray-50">
-  <div class="max-w-4xl mx-auto px-4 py-20">
-    <h2 class="text-3xl font-bold text-center mb-12">Get in Touch</h2>
-  
-    <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
-      {contacts.map(({ name, icon: Icon, href, label }) => (
-        <a
-          href={href}
-          rel="noopener noreferrer"
-          target="_blank"
-          class="flex items-center gap-3 p-4 rounded-lg hover:bg-gray-100 transition-colors group"
-          aria-label={`Contact via ${name}`}
-        >
-          <Icon class="w-6 h-6 stroke-gray-800 group-hover:stroke-black" />
-          <span class="text-gray-800 group-hover:text-black font-medium">{label}</span>
-        </a>
-      ))}
+<footer class="mt-32 bg-gray-50 dark:bg-zinc-900/50">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="flex flex-col space-y-8">
+      <p class="text-sm tracking-wide text-gray-500 dark:text-gray-300">GET IN TOUCH</p>
+      <div class="flex items-center justify-between gap-8">
+        <div class="flex items-center gap-8">
+          {contacts.map(({ name, icon: Icon, href }) => (
+            <a
+              href={href}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+              aria-label={name}
+            >
+              <Icon class="w-5 h-5" />
+            </a>
+          ))}
+        </div>
+        
+        <p class="text-gray-500 dark:text-gray-300 text-sm">
+          © Mirza Muric
+        </p>
+      </div>
     </div>
-  
-    <p class="text-center text-gray-600 text-sm">
-      © Mirza Muric. All rights reserved.
-    </p>
   </div>
 </footer>

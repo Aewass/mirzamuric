@@ -15,44 +15,55 @@ const { title, description, pubDate, tags, image } = Astro.props;
 
 <Layout title={title} description={description}>
   <article class="max-w-4xl mx-auto px-4 py-20">
-    <nav aria-label="Breadcrumb" class="mb-6">
-      <div class="flex items-center gap-2 min-w-0">
+    <nav aria-label="Breadcrumb" class="mb-16">
+      <div class="flex items-center gap-4">
         <a 
           href="/" 
-          class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors shrink-0"
+          class="text-gray-400 hover:text-black dark:hover:text-white transition-colors"
         >
           <Home class="w-5 h-5" />
-          <span>Home</span>
         </a>
-        <ChevronLeft class="w-5 h-5 text-gray-400 shrink-0" />
+        <ChevronLeft class="w-5 h-5 text-gray-400 dark:text-gray-500" />
         <a 
           href="/blog" 
-          class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors shrink-0"
+          class="text-gray-400 hover:text-black dark:hover:text-white transition-colors"
         >
           Blog
         </a>
-        <ChevronLeft class="w-5 h-5 text-gray-400 shrink-0" />
-        <span class="text-gray-900 truncate">{title}</span>
       </div>
     </nav>
-    <h1 class="text-4xl font-bold mb-8">{title}</h1>
 
-    {image && <img src={image} alt={title} class="w-full h-64 object-cover rounded-lg mb-8" />}
-    <div class="flex flex-wrap gap-2 mb-8 items-center">
-      <time datetime={pubDate.toISOString()} class="text-gray-600">
+    <div class="mb-16">
+      <span class="text-sm text-gray-400 dark:text-gray-500 mb-4 block">
         {pubDate.toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
         })}
-      </time>
-      {tags && tags.map(tag => (
-        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-600">
-          {tag}
-        </span>
-      ))}
+      </span>
+      <h1 class="text-4xl font-bold mb-6">{title}</h1>
+      <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">{description}</p>
     </div>
-    <div class="prose prose-lg max-w-none">
+
+    {image && (
+      <img 
+        src={image} 
+        alt={title} 
+        class="w-full aspect-[21/9] object-cover mb-16" 
+      />
+    )}
+
+    {tags && (
+      <div class="flex flex-wrap gap-3 mb-16">
+        {tags.map(tag => (
+          <span class="text-[11px] uppercase tracking-wide text-gray-400 dark:text-gray-500">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <div class="prose prose-lg max-w-none dark:prose-invert prose-headings:font-normal prose-a:text-black dark:prose-a:text-white hover:prose-a:text-gray-600 dark:hover:prose-a:text-gray-400 prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-headings:text-black dark:prose-headings:text-white prose-strong:text-black dark:prose-strong:text-white prose-code:text-black dark:prose-code:text-white">
       <slot />
     </div>
   </article>

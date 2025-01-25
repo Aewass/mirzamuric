@@ -42,8 +42,42 @@ const canonicalURL = Astro.url;
 		<meta name="generator" content={Astro.generator} />
 		<meta name="author" content="Mirza Muric" />
 		<meta name="keywords" content="Frontend Developer, Angular, TypeScript, Web Development, UI/UX, JavaScript" />
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=General+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+		<style is:global>
+			:root {
+				--font-heading: 'Space Grotesk', system-ui, sans-serif;
+				--font-body: 'General Sans', system-ui, sans-serif;
+			}
+
+			html {
+				font-family: var(--font-body);
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				font-family: var(--font-heading);
+			}
+
+			/* Dark mode styles */
+			html.dark {
+				color-scheme: dark;
+				background-color: #000;
+				color: #f1f5f9;
+			}
+
+			.dark body {
+				background-color: #000;
+				color: #f1f5f9;
+			}
+		</style>
 	</head>
-	<body class="bg-white text-gray-900">
+	<body>
 		<slot />
 	</body>
 </html>
@@ -56,3 +90,31 @@ const canonicalURL = Astro.url;
 		height: 100%;
 	}
 </style>
+
+<script>
+	// Run this script immediately
+	(function() {
+		const theme = (() => {
+			if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+				return localStorage.getItem('theme');
+			}
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				return 'dark';
+			}
+			return 'light';
+		})();
+
+		if (theme === 'dark') {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+
+		// Handle theme changes during navigation
+		document.addEventListener('astro:after-swap', () => {
+			if (localStorage.getItem('theme') === 'dark') {
+				document.documentElement.classList.add('dark');
+			}
+		});
+	})();
+</script>

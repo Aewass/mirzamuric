@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { Menu, X } from 'lucide-astro';
 import logo from '../assets/logo.svg';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface MenuItem {
   text?: string;
@@ -18,7 +19,7 @@ const menuItems: MenuItem[] = [
 ];
 ---
 
-<nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50">
+<nav class="fixed top-0 left-0 right-0 bg-white/80 dark:bg-black/80 backdrop-blur-sm z-50 border-b border-gray-100 dark:border-zinc-800">
   <div class="max-w-5xl mx-auto px-4 py-5">
     <!-- Mobile: Logo and Burger -->
     <div class="flex md:hidden justify-between items-center">
@@ -27,33 +28,36 @@ const menuItems: MenuItem[] = [
           loading="eager" 
           src={logo} 
           alt="Your Logo" 
-          class="h-8 w-8 rounded-full transition-transform duration-500" 
+          class="h-8 w-8 rounded-full transition-transform duration-500 hover:scale-110 dark:invert" 
           id="mobileLogo"
         />
       </a>
       <button 
         id="menuButton"
-        class="p-2"
+        class="p-2 transition-transform hover:scale-105 dark:hover:bg-zinc-800/50"
         aria-label="Menu"
       >
-        <Menu id="menuIcon" class="w-6 h-6" />
-        <X id="closeIcon" class="w-6 h-6 hidden" />
+        <Menu id="menuIcon" class="w-6 h-6 transition-opacity duration-300 stroke-gray-900 dark:stroke-white" />
+        <X id="closeIcon" class="w-6 h-6 hidden transition-opacity duration-300 stroke-gray-900 dark:stroke-white" />
       </button>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden">
+    <div id="mobileMenu" class="hidden md:hidden bg-white/80 dark:bg-black/80 backdrop-blur-sm">
       <ul class="flex flex-col items-center gap-6 py-8">
-        {menuItems.map((item) => (
-          <li>
+        {menuItems.map((item, index) => (
+          <li class="nav-item-mobile" style={`--delay: ${index * 100}ms`}>
             <a 
               href={item.href}
-              class="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors text-lg relative nav-link"
             >
               {item.text}
             </a>
           </li>
         ))}
+        <li class="nav-item-mobile" style={`--delay: ${menuItems.length * 100}ms`}>
+          <ThemeToggle />
+        </li>
       </ul>
     </div>
 
@@ -64,26 +68,120 @@ const menuItems: MenuItem[] = [
           loading="eager" 
           src={logo} 
           alt="Your Logo" 
-          class="h-8 w-8 rounded-full transition-transform duration-500" 
+          class="h-8 w-8 rounded-full transition-transform duration-500 hover:scale-110 dark:invert" 
           id="desktopLogo"
         />
       </a>
       
       <ul class="flex items-center gap-8">
-        {menuItems.map((item) => (
-          <li>
+        {menuItems.map((item, index) => (
+          <li class="nav-item" style={`--delay: ${index * 50}ms`}>
             <a 
               href={item.href}
-              class="text-gray-600 hover:text-gray-900 transition-colors"
+              class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors relative nav-link"
             >
               {item.text}
             </a>
           </li>
         ))}
       </ul>
+      <ThemeToggle />
     </div>
   </div>
 </nav>
+
+<style>
+  /* Underline animation for nav links */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #111827; /* gray-900 */
+    transition: width 0.3s ease-in-out;
+  }
+
+  .dark .nav-link::after {
+    background-color: #fff;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Desktop nav items fade in */
+  .nav-item {
+    opacity: 0;
+    animation: fadeInSlideDown 0.5s ease forwards;
+    animation-delay: var(--delay);
+  }
+
+  /* Mobile nav items slide in */
+  .nav-item-mobile {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: slideDown 0.3s ease forwards;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes fadeInSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile menu animation */
+  #mobileMenu {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #mobileMenu.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  #mobileMenu:not(.hidden) {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-item,
+    .nav-item-mobile,
+    .nav-link::after,
+    #mobileMenu,
+    .transition-transform {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Add dark mode gradient for mobile menu */
+  .dark #mobileMenu {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+  }
+</style>
 
 <script>
   const menuButton = document.getElementById('menuButton');
@@ -96,6 +194,14 @@ const menuItems: MenuItem[] = [
       mobileMenu.classList.toggle('hidden');
       menuIcon.classList.toggle('hidden');
       closeIcon.classList.toggle('hidden');
+      
+      // Reset animations for mobile menu items
+      const menuItems = mobileMenu.querySelectorAll('.nav-item-mobile');
+      menuItems.forEach((item) => {
+        item.style.animation = 'none';
+        item.offsetHeight; // Trigger reflow
+        item.style.animation = null;
+      });
     });
 
     // Close menu when clicking a link
@@ -108,13 +214,22 @@ const menuItems: MenuItem[] = [
     });
   }
 
-  // Add scroll rotation for logos
+  // Enhanced smooth scroll rotation for logos
   const mobileLogo = document.getElementById('mobileLogo');
   const desktopLogo = document.getElementById('desktopLogo');
   
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
   window.addEventListener('scroll', () => {
-    const rotation = window.scrollY / 2; // Adjust division factor to control rotation speed
-    if (mobileLogo) mobileLogo.style.transform = `rotate(${rotation}deg)`;
-    if (desktopLogo) desktopLogo.style.transform = `rotate(${rotation}deg)`;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const rotation = window.scrollY / 2;
+        if (mobileLogo) mobileLogo.style.transform = `rotate(${rotation}deg)`;
+        if (desktopLogo) desktopLogo.style.transform = `rotate(${rotation}deg)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
   });
 </script>
