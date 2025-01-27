@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import avatar from '../assets/image.svg';
-import avatarInverted from '../assets/image-inverted.svg';
 ---
 
 <header class="h-screen flex items-center justify-center px-4">
@@ -11,13 +10,7 @@ import avatarInverted from '../assets/image-inverted.svg';
         src={avatar}
         alt="Profile Avatar"
         loading="eager"
-        class="w-full h-full object-contain block dark:hidden"
-      />
-      <Image
-        src={avatarInverted}
-        alt="Profile Avatar"
-        loading="eager"
-        class="w-full h-full object-contain block hidden dark:block"
+        class="w-full h-full object-contain dark:invert"
       />
     </div>
 

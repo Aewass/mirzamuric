@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Phone, Mail, MapPin, Globe } from 'lucide-astro';
+import { Phone, Mail, MapPin, Globe, ChevronLeft, Home} from 'lucide-astro';
 
 const experiences = [
   {
@@ -59,6 +59,21 @@ const technologies = {
 
 <Layout title="CV - Mirza Muric" description="Professional CV of Mirza Muric - Frontend Developer">
   <div class="max-w-4xl mx-auto px-4 py-6">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-16">
+      <div class="flex items-center gap-4">
+        <a 
+          href="/" 
+          class="text-gray-400 hover:text-black dark:hover:text-white transition-colors flex items-center gap-1"
+        >
+          <Home class="w-5 h-5" />
+        </a>
+        <span class="text-gray-400 dark:text-gray-500">/</span>
+        <span class="text-gray-400 dark:text-gray-500">
+          CV
+        </span>
+      </div>
+    </nav>
     <!-- Header -->
     <header class="mb-8">
       <div class="mb-6">
@@ -207,17 +222,11 @@ const technologies = {
     </section>
 
     <!-- Navigation and Download Buttons -->
-    <div class="flex flex-col sm:flex-row justify-center gap-4 items-center">
-      <a 
-        href="/" 
-        class="button-light group w-[160px] px-6 py-2.5 bg-gray-100 text-gray-600 rounded-lg text-lg border border-gray-200 relative overflow-hidden text-center"
-      >
-        <span class="relative z-10 group-hover:text-gray-900 transition-colors">Back to Home</span>
-      </a>
+    <div class="flex flex-col sm:flex-row justify-center items-center">
       <a 
         href="/mirza-muric-cv.pdf" 
         download
-        class="button-dark group w-[160px] px-6 py-2.5 bg-gray-800 text-white rounded-lg text-lg border border-gray-700 relative overflow-hidden text-center"
+        class="button-dark group w-[160] px-6 py-2.5 bg-gray-800 text-white rounded-lg text-lg border border-gray-700 relative overflow-hidden text-center"
       >
         <span class="relative z-10">Download CV</span>
       </a>
