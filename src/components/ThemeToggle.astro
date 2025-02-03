@@ -3,12 +3,34 @@ import { Sun, Moon } from 'lucide-astro';
 ---
 
 <button
-  class="theme-toggle w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800/50 transition-colors"
+  class="theme-toggle w-10 h-10 relative flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800/50 transition-colors overflow-hidden"
   aria-label="Toggle dark mode"
 >
-  <Sun class="w-5 h-5 dark:hidden" />
-  <Moon class="w-5 h-5 hidden dark:block" />
+  <div class="toggle-icons absolute inset-0 flex items-center justify-center transition-all duration-500 dark:translate-x-[150%] dark:translate-y-[150%]">
+    <Sun class="w-5 h-5" />
+  </div>
+  <div class="toggle-icons absolute inset-0 flex items-center justify-center transition-all duration-500 -translate-x-[150%] -translate-y-[150%] dark:translate-x-0 dark:translate-y-0">
+    <Moon class="w-5 h-5" />
+  </div>
 </button>
+
+<style>
+  .theme-toggle {
+    overflow: hidden;
+  }
+
+  .toggle-icons {
+    transform-origin: 150% 150%;
+    transition-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  }
+
+  /* Disable animations if user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .toggle-icons {
+      transition: none !important;
+    }
+  }
+</style>
 
 <script>
   const theme = (() => {
