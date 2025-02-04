@@ -67,160 +67,137 @@ const allProjects: Project[] = [
 <section class="max-w-4xl mx-auto px-4 py-20">
   <h2 class="text-3xl font-bold text-start mb-16">Featured Projects</h2>
 
-  <div class="space-y-32" id="projectsGrid">
-    {allProjects.map((project, index) => (
-      <div class={`project-card ${index >= featuredProjects.length ? 'hidden' : ''}`}>
-        {index < featuredProjects.length ? (
-          <div class="group">
-            {project.liveUrl && (
-              <a 
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="block"
-                aria-label={`View ${project.title} project`}
-              >
-                <div class={`grid lg:grid-cols-5 gap-8 items-center ${index >= featuredProjects.length ? 'border-l-2 border-gray-200 dark:border-gray-700 pl-6 hover:border-gray-400 dark:hover:border-gray-500 transition-colors' : ''}`}>
-                  {/* Left Column: Text Content */}
-                  <div class="lg:col-span-2 space-y-6">
-                    <h3 class="text-2xl font-normal group-hover:text-gray-500 transition-colors">{project.title}</h3>
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{project.description}</p>
-                    
-                    <div class="flex flex-wrap gap-x-6 text-sm tracking-wide text-gray-400 dark:text-gray-300">
-                      {project.technologies.map(tech => (
-                        <span class="uppercase text-[11px]">{tech}</span>
-                      ))}
-                    </div>
+  <div class="space-y-32">
+    {featuredProjects.map((project, index) => (
+      <div class="project-card">
+        <div class="group">
+          {project.liveUrl && (
+            <a 
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block"
+              aria-label={`View ${project.title} project`}
+            >
+              <div class={`grid lg:grid-cols-5 gap-8 items-center ${index >= featuredProjects.length ? 'border-l-2 border-gray-200 dark:border-gray-700 pl-6 hover:border-gray-400 dark:hover:border-gray-500 transition-colors' : ''}`}>
+                {/* Left Column: Text Content */}
+                <div class="lg:col-span-2 space-y-6">
+                  <h3 class="text-2xl font-normal group-hover:text-gray-500 transition-colors">{project.title}</h3>
+                  <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{project.description}</p>
+                  
+                  <div class="flex flex-wrap gap-x-6 text-sm tracking-wide text-gray-400 dark:text-gray-300">
+                    {project.technologies.map(tech => (
+                      <span class="uppercase text-[11px]">{tech}</span>
+                    ))}
                   </div>
+                </div>
 
-                  {/* Right Column: Image */}
-                  {index < featuredProjects.length && (
-                    <div class="lg:col-span-3 relative">
-                      {/* Desktop Frame */}
-                      <div class="rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900 p-2 pt-5 group-hover:transform group-hover:scale-[1.02] transition-all duration-500">
-                        {/* Minimal Browser Bar */}
-                        <div class="absolute top-1.5 left-3 flex gap-1">
-                          <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
-                          <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
-                          <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+                {/* Right Column: Image */}
+                {index < featuredProjects.length && (
+                  <div class="lg:col-span-3 relative">
+                    {/* Desktop Frame */}
+                    <div class="rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900 p-2 pt-5 group-hover:transform group-hover:scale-[1.02] transition-all duration-500">
+                      {/* Minimal Browser Bar */}
+                      <div class="absolute top-1.5 left-3 flex gap-1">
+                        <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+                      </div>
+                      
+                      {/* Main Image */}
+                      {project.image && (
+                        <div class="overflow-hidden rounded">
+                          <Image 
+                            src={project.image} 
+                          alt={`Screenshot of ${project.title}`}
+                          class="w-full h-full object-cover dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
+                          width={1280}
+                            height={720}
+                          />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Floating Mobile Frame */}
+                    <div class="absolute 
+                      sm:-right-4 sm:-bottom-10 sm:w-1/4
+                      -right-2 -bottom-16 w-1/3
+                      shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] 
+                      rounded-[1.5rem] bg-gray-50 dark:bg-gray-900 p-1.5
+                      group-hover:transform group-hover:translate-x-2 group-hover:-translate-y-2
+                      transition-all duration-500">
+                      <div class="relative rounded-[1.2rem] overflow-hidden">
+                        {/* Minimal Notch */}
+                        <div class="absolute top-0 inset-x-0 h-4 bg-gray-50 dark:bg-gray-900 z-10 flex justify-center items-end">
+                          <div class="w-12 h-2 bg-gray-200 dark:bg-gray-800 rounded-full"></div>
                         </div>
                         
-                        {/* Main Image */}
-                        {project.image && (
-                          <div class="overflow-hidden rounded">
-                            <Image 
-                              src={project.image} 
-                            alt={`Screenshot of ${project.title}`}
-                            class="w-full h-full object-cover dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
-                            width={1280}
-                              height={720}
-                            />
-                          </div>
+                        {/* Mobile Screenshot */}
+                        {project.mobileImage && (
+                          <Image 
+                            src={project.mobileImage} 
+                            alt={`Mobile view of ${project.title}`}
+                            class="w-full aspect-[9/19] object-cover dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
+                            width={720}
+                            height={1520}
+                          />
                         )}
                       </div>
-
-                      {/* Floating Mobile Frame */}
-                      <div class="absolute 
-                        sm:-right-4 sm:-bottom-10 sm:w-1/4
-                        -right-2 -bottom-16 w-1/3
-                        shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] 
-                        rounded-[1.5rem] bg-gray-50 dark:bg-gray-900 p-1.5
-                        group-hover:transform group-hover:translate-x-2 group-hover:-translate-y-2
-                        transition-all duration-500">
-                        <div class="relative rounded-[1.2rem] overflow-hidden">
-                          {/* Minimal Notch */}
-                          <div class="absolute top-0 inset-x-0 h-4 bg-gray-50 dark:bg-gray-900 z-10 flex justify-center items-end">
-                            <div class="w-12 h-2 bg-gray-200 dark:bg-gray-800 rounded-full"></div>
-                          </div>
-                          
-                          {/* Mobile Screenshot */}
-                          {project.mobileImage && (
-                            <Image 
-                              src={project.mobileImage} 
-                              alt={`Mobile view of ${project.title}`}
-                              class="w-full aspect-[9/19] object-cover dark:opacity-80 dark:hover:opacity-100 transition-all duration-700"
-                              width={720}
-                              height={1520}
-                            />
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </a>
-            )}
-          </div>
-        ) : (
-          <div class="group">
-            {project.liveUrl && (
-              <a 
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="block"
-                aria-label={`View ${project.title} project`}
-              >
-                <div class="relative p-6 rounded-2xl bg-gray-50 dark:bg-zinc-900/50 border border-gray-100 dark:border-zinc-800 hover:border-gray-200 dark:hover:border-zinc-700 transition-all group-hover:shadow-lg">
-                  <div class="flex flex-col gap-6">
-                    <div class="space-y-4">
-                      <h3 class="text-xl font-normal group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors">
-                        {project.title}
-                      </h3>
-                      <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-3">
-                      {project.technologies.map(tech => (
-                        <span class="px-3 py-1 text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 rounded-full">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div class="flex items-center gap-2 text-gray-400 dark:text-gray-500">
-                      <ExternalLink class="w-4 h-4" />
-                      <span class="text-sm">View Project</span>
                     </div>
                   </div>
-
-                  {/* Subtle gradient overlay */}
-                  <div class="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100/50 dark:to-zinc-800/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                </div>
-              </a>
-            )}
-          </div>
-        )}
+                )}
+              </div>
+            </a>
+          )}
+        </div>
       </div>
     ))}
+  </div>
 
-    {allProjects.length > featuredProjects.length && (
-      <a 
-        id="seeMore" class="inline-flex items-center gap-2 text-sm tracking-wider text-gray-400 hover:text-gray-900 dark:hover:text-white uppercase transition-colors mt-16"
-      >
-        View More Projects <ArrowDown class="w-4 h-4" />
-      </a>
-    )}
+  {/* Side Projects Section */}
+  <div class="mt-32">
+    <h3 class="text-sm uppercase tracking-wide text-gray-400 mb-8">Other Projects</h3>
+    <div class="space-y-4">
+      {allProjects.slice(featuredProjects.length).map((project) => (
+        <div class="group">
+          {project.liveUrl && (
+            <a 
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block"
+              aria-label={`View ${project.title} project`}
+            >
+              <div class="relative p-6 rounded-xl bg-transparent group-hover:bg-gray-50 dark:group-hover:bg-zinc-900/50 border border-transparent group-hover:border-gray-100 dark:group-hover:border-zinc-800 transition-all">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                  <div class="flex-1 min-w-0 space-y-1">
+                    <div class="flex items-center gap-3">
+                      <h3 class="text-lg font-normal text-gray-800 dark:text-gray-200 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                        {project.title}
+                      </h3>
+                      <ExternalLink class="w-4 h-4 text-gray-400" />
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div class="flex flex-wrap gap-3 sm:flex-nowrap sm:gap-4">
+                    {project.technologies.map(tech => (
+                      <span class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
   </div>
 </section>
-
-<script>
-  const seeMoreBtn = document.getElementById('seeMore');
-  const hiddenProjects = document.querySelectorAll('.project-card.hidden');
-
-  if (seeMoreBtn) {
-    seeMoreBtn.addEventListener('click', () => {
-      // Show all hidden projects
-      hiddenProjects.forEach(project => {
-        project.classList.remove('hidden');
-      });
-      // Remove the "View More" button
-      seeMoreBtn.remove();
-    });
-  }
-</script>
 
 <style>
   @media (hover: none) {
