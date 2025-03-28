@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Phone, Mail, MapPin, Globe, ChevronLeft, Home} from 'lucide-astro';
+import { Phone, Mail, MapPin, Globe, Home} from 'lucide-astro';
 
 const experiences = [
   {
@@ -8,10 +8,10 @@ const experiences = [
     position: "Frontend Developer",
     period: "2022 - Present",
     description: [
-      "Developed enterprise-scale Angular applications for both internal use and external clients",
+      "Worked on tools and applications for property management industry",
       "Created reusable component libraries and CSS design systems",
-      "Maintained comprehensive documentation and contributed regularly to internal knowledge base",
-      "Mentored junior developers and conducted code reviews"
+      "Maintained comprehensive documentation and contributed regularly to internal knowledge base and the company blog",
+      "Worked on onboarding and mentoring new developers"
     ],
     technologies: ["Angular", "TypeScript", "Tailwind", "GraphQL", "Blazor", "REST"]
   },
@@ -20,10 +20,12 @@ const experiences = [
     position: "Frontend Developer",
     period: "2019 - 2022",
     description: [
-      "Started my development career in a fast-paced betting industry environment",
-      "Built complex applications handling real-time data and mobile apps using Ionic",
-      "Optimized application performance and user experience in high-traffic scenarios",
-      "Mentored junior developers while managing multiple concurrent projects"
+      "Built products for sports betting industry, handling real-time data with SignalR and Angular",
+      "Optimised UI for handling a large amount of data efficiently and displaying it in a user-friendly way",
+      "Built a successful mobile app for beer tasting enthusiasts using Ionic",
+      "Built an online food ordering solution using Angular and ElectronJS",
+      "Worked on a scheduling system for a venue booking system using Angular",
+      "Created boutique websites for marketing agencies"
     ],
     technologies: ["Angular", "JavaScript", "SCSS", "REST", "Ionic", "ElectronJS"]
   }
@@ -59,8 +61,8 @@ const technologies = {
 
 <Layout title="CV - Mirza Muric" description="Professional CV of Mirza Muric - Frontend Developer">
   <div class="max-w-4xl mx-auto px-4 py-6">
-    <!-- Breadcrumb -->
-    <nav aria-label="Breadcrumb" class="mb-16">
+    <!-- Breadcrumb - hidden when printing -->
+    <nav aria-label="Breadcrumb" class="mb-16 print:hidden">
       <div class="flex items-center gap-4">
         <a 
           href="/" 
@@ -74,72 +76,74 @@ const technologies = {
         </span>
       </div>
     </nav>
-    <!-- Header -->
-    <header class="mb-8">
-      <div class="mb-6">
-        <h1 class="text-3xl sm:text-4xl font-bold mb-2 text-gray-900 dark:text-white">
-          Mirza Muric
-        </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300 font-medium">Frontend Developer</p>
-      </div>
-      <div class="grid grid-cols-1 gap-3 text-sm text-gray-600 dark:text-gray-400">
-        <p class="flex items-center gap-2">
-          <MapPin class="w-4 h-4 flex-shrink-0" />
-          Sarajevo, Bosnia
-        </p>
-        <p class="flex items-center gap-2">
-          <Phone class="w-4 h-4 flex-shrink-0" />
-          +387 61 972 508
-        </p>
-        <p class="flex items-center gap-2">
-          <Globe class="w-4 h-4 flex-shrink-0" />
-          mirzamuric.com
-        </p>
-        <p class="flex items-center gap-2">
-          <Mail class="w-4 h-4 flex-shrink-0" />
-          mirza_muric@outlook.com
-        </p>
+    
+    <!-- Header - more compact for printing -->
+    <header class="mb-6 print:mb-2">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 print:mb-2">
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-bold mb-0 text-gray-900 dark:text-white print:text-2xl">
+            Mirza Muric
+          </h1>
+          <p class="text-lg text-gray-600 dark:text-gray-300 font-medium print:text-base">Senior Frontend Engineer</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-gray-600 dark:text-gray-400 mt-2 sm:mt-0 print:text-xs print:gap-0">
+          <p class="flex items-center gap-1">
+            <MapPin class="w-4 h-4 flex-shrink-0 print:w-3 print:h-3" />
+            Sarajevo, Bosnia
+          </p>
+          <p class="flex items-center gap-1">
+            <Phone class="w-4 h-4 flex-shrink-0 print:w-3 print:h-3" />
+            +387 61 972 508
+          </p>
+          <p class="flex items-center gap-1">
+            <Globe class="w-4 h-4 flex-shrink-0 print:w-3 print:h-3" />
+            mirzamuric.com
+          </p>
+          <p class="flex items-center gap-1">
+            <Mail class="w-4 h-4 flex-shrink-0 print:w-3 print:h-3" />
+            mirza_muric@outlook.com
+          </p>
+        </div>
       </div>
     </header>
 
-    <!-- Professional Summary -->
-    <section class="mb-4">
-      <h2 class="text-xl font-bold mb-2 flex items-center gap-2 dark:text-white">
-        <span class="h-1 w-6 bg-gray-900 dark:bg-gray-100 rounded-full"></span>
+    <!-- Professional Summary - reduced margins for print -->
+    <section class="mb-4 print:mb-2">
+      <h2 class="text-xl font-bold mb-2 print:mb-1 print:text-lg flex items-center gap-2 dark:text-white">
+        <span class="h-1 w-6 bg-gray-900 dark:bg-gray-100 rounded-full print:hidden"></span>
         Professional Summary
       </h2>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm pl-8">
-        Frontend developer with over 5 years of experience and a passion for learning new technologies. 
-        I enjoy building both visually appealing websites and complex enterprise applications. 
-        Having worked on various projects, from simple landing pages to large-scale apps, 
-        I've developed a good eye for design while maintaining clean code practices. 
-        Strong communicator with proven ability to independently handle client interactions and 
-        effectively translate business requirements into technical solutions.
+      <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm pl-8 print:pl-0 print:leading-tight print:text-xs">
+        Senior frontend engineer with over 6 years of experience in building enterprise applications and tools. 
+        I've worked on a variety of projects, from simple landing pages to large-scale apps, and I've developed a good eye for design while maintaining clean code practices.
+        I can cover all areas of frontend development, from design to implementation and maintenance.
+        My specialities are in making this look good and working on the code that makes it work.
+        I take a keen interest in learning new technologies and tools, and I'm always looking for new challenges.
       </p>
     </section>
 
-    <!-- Experience -->
-    <section class="mb-4">
-      <h2 class="text-xl font-bold mb-2 flex items-center gap-2 dark:text-white">
-        <span class="h-1 w-6 bg-gray-900 dark:bg-gray-100 rounded-full"></span>
+    <!-- Experience - no vertical line in print -->
+    <section class="mb-4 print:mb-2">
+      <h2 class="text-xl font-bold mb-2 print:mb-1 print:text-lg flex items-center gap-2 dark:text-white">
+        <span class="h-1 w-6 bg-gray-900 dark:bg-gray-100 rounded-full print:hidden"></span>
         Professional Experience
       </h2>
-      <div class="space-y-3">
+      <div class="space-y-3 print:space-y-2">
         {experiences.map((exp) => (
-          <div class="pl-8 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-gray-900 before:to-gray-200 dark:before:from-gray-100 dark:before:to-gray-800">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{exp.company}</h3>
-            <p class="text-gray-500 dark:text-gray-400 mb-1 text-sm font-medium">{exp.position} | {exp.period}</p>
-            <ul class="list-none space-y-0.5 mb-1 text-gray-600 dark:text-gray-300 text-sm">
+          <div class="pl-8 print:pl-0 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-gray-900 before:to-gray-200 dark:before:from-gray-100 dark:before:to-gray-800 print:before:hidden">
+            <h3 class="text-lg font-semibold print:text-base text-gray-900 dark:text-white">{exp.company}</h3>
+            <p class="text-gray-500 dark:text-gray-400 mb-1 print:mb-0 text-sm print:text-xs font-medium">{exp.position} | {exp.period}</p>
+            <ul class="list-none space-y-0.5 print:space-y-0 mb-1 print:mb-0 text-gray-600 dark:text-gray-300 text-sm print:text-xs">
               {exp.description.map(item => (
-                <li class="flex items-start gap-2">
-                  <span class="h-1.5 w-1.5 bg-gray-400 dark:bg-gray-500 rounded-full mt-1.5"></span>
+                <li class="flex items-start gap-1">
+                  <span class="h-1.5 w-1.5 bg-gray-400 dark:bg-gray-500 rounded-full mt-1.5 print:mt-1 print:h-1 print:w-1"></span>
                   {item}
                 </li>
               ))}
             </ul>
-            <div class="flex flex-wrap gap-1">
+            <div class="flex flex-wrap gap-1 print:gap-0.5">
               {exp.technologies.map(tech => (
-                <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-md text-xs border border-gray-200 dark:border-gray-700">
+                <span class="px-2 py-0.5 print:px-1 print:py-0 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-md text-xs print:text-[9px] border border-gray-200 dark:border-gray-700">
                   {tech}
                 </span>
               ))}
@@ -149,24 +153,24 @@ const technologies = {
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="mb-8">
-      <h2 class="text-xl font-bold mb-4 flex items-center gap-2 dark:text-white">
-        <span class="h-1 w-6 bg-gray-900 dark:bg-gray-100 rounded-full"></span>
+    <!-- Skills - reduced spacing for print -->
+    <section class="mb-8 print:mb-2">
+      <h2 class="text-xl font-bold mb-4 print:mb-2 print:text-lg flex items-center gap-2 dark:text-white">
+        <span class="h-1 w-6 bg-gray-900 dark:bg-gray-100 rounded-full print:hidden"></span>
         Technical Skills
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pl-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 print:gap-2 pl-8">
         {Object.entries(technologies).map(([category, items]) => (
-          <div class="space-y-2">
-            <h3 class="text-base font-semibold capitalize text-gray-900 dark:text-white">{category}</h3>
-            <div class="space-y-1.5">
+          <div class="space-y-2 print:space-y-1">
+            <h3 class="text-base font-semibold print:text-sm capitalize text-gray-900 dark:text-white">{category}</h3>
+            <div class="space-y-1.5 print:space-y-0">
               {items.map(({ name, expert }) => (
-                <div class="flex items-center gap-2 text-sm">
+                <div class="flex items-center gap-2 text-sm print:text-xs">
                   <span class="text-gray-600 dark:text-gray-300">
                     {name}
                   </span>
                   {expert && (
-                    <span class="text-xs px-1.5 py-0.5 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 dark:text-gray-900 text-white rounded-md whitespace-nowrap">
+                    <span class="text-xs print:text-[9px] px-1.5 print:px-1 py-0.5 print:py-0 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 dark:text-gray-900 text-white rounded-md whitespace-nowrap">
                       Expert
                     </span>
                   )}
@@ -178,25 +182,25 @@ const technologies = {
       </div>
     </section>
 
-    <!-- Education and Languages -->
-    <section class="mb-4">
+    <!-- Education and Languages - reduced spacing for print -->
+    <section class="mb-4 print:mb-2">
       <!-- Education -->
-      <div class="mb-4">
-        <h2 class="text-xl font-bold mb-2 flex items-center gap-2">
-          <span class="h-1 w-6 bg-gray-900 rounded-full"></span>
+      <div class="mb-4 print:mb-2">
+        <h2 class="text-xl font-bold mb-2 print:mb-1 print:text-lg flex items-center gap-2">
+          <span class="h-1 w-6 bg-gray-900 rounded-full print:hidden"></span>
           Education
         </h2>
-        <div class="text-gray-600 text-sm pl-8 space-y-1.5">
-          <p class="flex items-start gap-2">
-            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5"></span>
+        <div class="text-gray-600 text-sm print:text-xs pl-8 print:pl-0 space-y-1.5 print:space-y-0">
+          <p class="flex items-start gap-2 print:gap-1">
+            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5 print:mt-1 print:h-1 print:w-1"></span>
             Early programming experience with BASIC in elementary school
           </p>
-          <p class="flex items-start gap-2">
-            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5"></span>
+          <p class="flex items-start gap-2 print:gap-1">
+            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5 print:mt-1 print:h-1 print:w-1"></span>
             Web development fundamentals (HTML, CSS, JavaScript) in high school
           </p>
-          <p class="flex items-start gap-2">
-            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5"></span>
+          <p class="flex items-start gap-2 print:gap-1">
+            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5 print:mt-1 print:h-1 print:w-1"></span>
             HR Management studies in college
           </p>
         </div>
@@ -204,25 +208,25 @@ const technologies = {
 
       <!-- Languages -->
       <div>
-        <h2 class="text-xl font-bold mb-2 flex items-center gap-2">
-          <span class="h-1 w-6 bg-gray-900 rounded-full"></span>
+        <h2 class="text-xl font-bold mb-2 print:mb-1 print:text-lg flex items-center gap-2">
+          <span class="h-1 w-6 bg-gray-900 rounded-full print:hidden"></span>
           Languages
         </h2>
-        <div class="text-gray-600 text-sm pl-8 space-y-1.5">
-          <p class="flex items-start gap-2">
-            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5"></span>
+        <div class="text-gray-600 text-sm print:text-xs pl-8 print:pl-0 space-y-1.5 print:space-y-0">
+          <p class="flex items-start gap-2 print:gap-1">
+            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5 print:mt-1 print:h-1 print:w-1"></span>
             Bosnian (Native), English (Fluent)
           </p>
-          <p class="flex items-start gap-2">
-            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5"></span>
+          <p class="flex items-start gap-2 print:gap-1">
+            <span class="h-1.5 w-1.5 bg-gray-400 rounded-full mt-1.5 print:mt-1 print:h-1 print:w-1"></span>
             Slovene (Basic), German (Beginner)
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Navigation and Download Buttons -->
-    <div class="flex flex-col sm:flex-row justify-center items-center">
+    <!-- Navigation and Download Buttons - hidden for print -->
+    <div class="flex flex-col sm:flex-row justify-center items-center print:hidden">
       <a 
         href="/mirza-muric-cv.pdf" 
         download
@@ -258,6 +262,23 @@ const technologies = {
         .button-dark {
           transition: none !important;
           transform: none !important;
+        }
+      }
+
+      /* Add print styles */
+      @media print {
+        @page {
+          margin: 0.5cm;
+          size: A4;
+        }
+        
+        body {
+          font-size: 11px;
+          line-height: 1.2;
+        }
+        
+        .print\:hidden {
+          display: none !important;
         }
       }
     </style>

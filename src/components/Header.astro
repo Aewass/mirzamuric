@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import avatar from '../assets/image.svg';
+import { Download } from 'lucide-astro';
 ---
 
 <header class="h-screen flex items-center justify-center px-4">
@@ -23,19 +24,14 @@ import avatar from '../assets/image.svg';
           I'm a <b>Frontend Developer</b> who likes solving problems. I build web applications and websites with a focus on clean code and great design.
         </p>
       </div>
-      <div class="flex gap-4 justify-center md:justify-start">
+      <div class="flex justify-center md:justify-start">
         <a 
-          href="/cv" 
-          class="button-light group w-[160px] px-6 py-2.5 bg-gray-100 text-gray-600 rounded-lg text-lg border border-gray-200 relative overflow-hidden text-center"
-        >
-          <span class="relative z-10 group-hover:text-gray-900 transition-colors">View CV</span>
-        </a>
-        <a 
-          href="/mirza-muric-cv.pdf" 
+          href="/mirzamuric_cv.pdf" 
           download
-          class="button-dark group w-[160px] px-6 py-2.5 bg-gray-800 text-white rounded-lg text-lg border border-gray-700 relative overflow-hidden text-center"
+          class="button-dark group px-8 py-3 bg-gray-800 text-white rounded-lg text-lg border border-gray-700 relative overflow-hidden text-center flex items-center gap-2"
         >
           <span class="relative z-10">Download CV</span>
+          <Download class="w-5 h-5 relative z-10" />
         </a>
       </div>
     </div>
