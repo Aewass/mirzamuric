@@ -97,23 +97,27 @@ const menuItems: MenuItem[] = [
 
 <style>
   /* Underline animation for nav links */
+  .nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
   .nav-link::after {
     content: '';
     position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
+    bottom: -2px;
     left: 0;
-    background-color: #111827; /* gray-900 */
-    transition: width 0.3s ease-in-out;
-  }
-
-  .dark .nav-link::after {
-    background-color: #fff;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
   }
 
   .nav-link:hover::after {
-    width: 100%;
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   /* Desktop nav items fade in */

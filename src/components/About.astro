@@ -16,42 +16,37 @@ const interests: Interest[] = [
 <section class="max-w-4xl mx-auto px-4 py-20">
   <h2 class="text-3xl font-bold mb-16">About Me</h2>
 
-  <div class="grid md:grid-cols-[2fr,1fr] gap-12">
-    <div class="space-y-8">
-      <div class="prose prose-gray dark:prose-invert">
-        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-          My programming journey began in elementary school, where I took my first steps with BASIC, sparking an early interest in technology. Even managed to end up 3rd in a local programming competition against other kids that were using C++. To this day I still can't figure why our teacher didn't let us use C++.
-        </p>
-        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-          In high school, I had the opportunity to explore web development through coursework, learning the fundamentals of HTML, CSS, and JavaScript. Although my path then led me away from programming for several years, my interest in technology never faded.
-        </p>
-        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-          After college, I found my way back to my programming when I accepted a position as a web developer at TNTSoft, where I've been able to fully commit myself to the craft.
-        </p>
-      </div>
+  <!-- Text in two columns -->
+  <div class="grid md:grid-cols-2 gap-8 mb-16">
+    <div class="prose prose-gray dark:prose-invert">
+      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+        My programming journey began in elementary school, where I took my first steps with BASIC, sparking an early interest in technology. Even managed to end up 3rd in a local programming competition against other kids that were using C++. To this day I still can't figure why our teacher didn't let us use C++.
+      </p>
     </div>
+    <div class="prose prose-gray dark:prose-invert">
+      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+        In high school, I had the opportunity to explore web development through coursework, learning the fundamentals of HTML, CSS, and JavaScript. Although my path then led me away from programming for several years, my interest in technology never faded.
+      </p>
+    </div>
+  </div>
 
-    <div>
-      <div class="space-y-6">
-        <h3 class="text-sm uppercase tracking-wide text-gray-400">Beyond the Code</h3>
-        <p class="text-gray-600 dark:text-gray-300">
-          When I'm not writing code, you'll find me seeking adventure in the great outdoors.
-        </p>
-        <div class="space-y-4">
-          {interests.map(({ name, icon: Icon }) => (
-            <div class="group p-4 rounded-xl bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 hover:border-gray-200 dark:hover:border-zinc-700 shadow-sm hover:shadow-md transition-all">
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-50 dark:bg-zinc-800 group-hover:bg-gray-100 dark:group-hover:bg-zinc-700 transition-colors">
-                  <Icon class="w-6 h-6 stroke-gray-400 group-hover:stroke-black dark:group-hover:stroke-white transition-colors" />
-                </div>
-                <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:text-black dark:group-hover:text-white transition-colors">
-                  {name}
-                </span>
-              </div>
-            </div>
-          ))}
+  <!-- Interests in a horizontal row -->
+  <div>
+    <h3 class="text-sm uppercase tracking-wide text-gray-400">Beyond the Code</h3>
+    <p class="text-gray-600 dark:text-gray-300 mt-6 mb-8">
+      There's more to life than writing code. When I'm not behind the keyboard, you'll find me scaling mountain peaks, exploring new trails, and capturing nature's beauty through my lens. These adventures not only fuel my creativity but also bring fresh perspectives to my work.
+    </p>
+    <div class="space-y-4">
+      {interests.map(({ name, icon: Icon }) => (
+        <div class="group flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 hover:border-gray-200 dark:hover:border-zinc-700 transition-all">
+          <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-50 dark:bg-zinc-800">
+            <Icon class="w-5 h-5 stroke-gray-500 dark:stroke-gray-400" />
+          </div>
+          <span class="text-gray-900 dark:text-gray-100 whitespace-nowrap">
+            {name}
+          </span>
         </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>

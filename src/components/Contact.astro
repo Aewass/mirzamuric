@@ -1,5 +1,5 @@
 ---
-import { Linkedin, Instagram, Mail, Layout } from 'lucide-astro'
+import { Linkedin, Instagram, Mail, Layout, Download, Send, CheckCircle2 } from 'lucide-astro'
 
 interface ContactLink {
   name: string;
@@ -31,28 +31,300 @@ const contacts: ContactLink[] = [
 ---
 
 <footer class="mt-32 bg-gray-50 dark:bg-zinc-900/50">
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <div class="flex flex-col space-y-8">
-      <p class="text-sm tracking-wide text-gray-500 dark:text-gray-300">GET IN TOUCH</p>
-      <div class="flex items-center justify-between gap-8">
-        <div class="flex items-center gap-8">
-          {contacts.map(({ name, icon: Icon, href }) => (
-            <a
-              href={href}
-              rel="noopener noreferrer"
-              target="_blank"
-              class="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
-              aria-label={name}
-            >
-              <Icon class="w-5 h-5" />
-            </a>
-          ))}
-        </div>
-        
-        <p class="text-gray-500 dark:text-gray-300 text-sm">
-          © Mirza Muric
+  <div class="max-w-4xl mx-auto px-4 py-16 sm:py-24 md:py-32">
+    <div class="flex flex-col items-center space-y-12 sm:space-y-16">
+      <div class="text-center space-y-4 px-4">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-wide text-gray-800 dark:text-gray-100">
+          GET IN TOUCH
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
+          Whether you want to discuss a project, talk about technology, or talk about mountains,
+          I'm always excited to connect with like-minded people.
         </p>
       </div>
+      
+      <div class="grid md:grid-cols-5 gap-12 w-full max-w-4xl">
+        <div class="md:col-span-3">
+          <form 
+            id="contactForm"
+            class="space-y-4 relative" 
+            action="https://formspree.io/f/mpwpyjad"
+            method="POST"
+          >
+            <div id="successMessage" class="fixed bottom-8 right-8 p-4 rounded-lg bg-gray-800 dark:bg-zinc-800 text-white shadow-lg transform transition-all duration-300 flex items-center gap-3 z-50 hidden opacity-0">
+              <CheckCircle2 class="w-5 h-5 text-white" />
+              <p class="text-base">
+                Thanks for your message! I'll get back to you soon.
+              </p>
+            </div>
+            
+            <div id="formFields" class="space-y-4">
+              <div class="space-y-4">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border focus:outline-none transition-all dark:bg-zinc-800 dark:border-zinc-700 dark:text-gray-200 dark:placeholder-gray-400"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border focus:outline-none transition-all dark:bg-zinc-800 dark:border-zinc-700 dark:text-gray-200 dark:placeholder-gray-400"
+                />
+              </div>
+              <textarea
+                name="message"
+                placeholder="Message"
+                required
+                rows="4"
+                class="w-full px-4 py-3 rounded-lg border focus:outline-none transition-all dark:bg-zinc-800 dark:border-zinc-700 dark:text-gray-200 dark:placeholder-gray-400"
+              ></textarea>
+              <button
+                type="submit"
+                class="button-dark group px-8 py-3 bg-gray-800 text-white rounded-lg text-lg border border-gray-700 relative overflow-hidden text-center flex items-center gap-2"
+              >
+                <span class="relative z-10">Send Message</span>
+                <Send class="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
+              </button>
+            </div>
+          </form>
+
+          <style>
+            #successMessage {
+              animation: slideIn 0.5s ease-out;
+            }
+
+            @keyframes slideIn {
+              from {
+                transform: translateY(100%);
+                opacity: 0;
+              }
+              to {
+                transform: translateY(0);
+                opacity: 1;
+              }
+            }
+
+            .fade-out {
+              animation: fadeOut 0.3s ease-out forwards;
+            }
+
+            @keyframes fadeOut {
+              from {
+                transform: translateY(0);
+                opacity: 1;
+              }
+              to {
+                transform: translateY(20px);
+                opacity: 0;
+              }
+            }
+
+            /* Override autofill styles */
+            @media (prefers-color-scheme: light) {
+              input:-webkit-autofill,
+              input:-webkit-autofill:hover,
+              input:-webkit-autofill:focus,
+              input:-webkit-autofill:active,
+              textarea:-webkit-autofill,
+              textarea:-webkit-autofill:hover,
+              textarea:-webkit-autofill:focus,
+              textarea:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 30px white inset !important;
+                -webkit-text-fill-color: #1f2937 !important;
+                caret-color: #1f2937 !important;
+              }
+            }
+
+            @media (prefers-color-scheme: dark) {
+              input:-webkit-autofill,
+              input:-webkit-autofill:hover,
+              input:-webkit-autofill:focus,
+              input:-webkit-autofill:active,
+              textarea:-webkit-autofill,
+              textarea:-webkit-autofill:hover,
+              textarea:-webkit-autofill:focus,
+              textarea:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 30px rgb(39 39 42) inset !important;
+                -webkit-text-fill-color: #e5e7eb !important;
+                caret-color: #e5e7eb !important;
+              }
+            }
+
+        
+          </style>
+
+          <script>
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+
+            if (form) {
+              form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                try {
+                  const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                      'Accept': 'application/json'
+                    }
+                  });
+                  
+                  if (response.ok) {
+                    // Reset form
+                    form.reset();
+                    
+                    // Show success message
+                    successMessage?.classList.remove('hidden', 'opacity-0');
+                    
+                    // Hide success message after 3 seconds
+                    setTimeout(() => {
+                      successMessage?.classList.add('fade-out');
+                      
+                      // After animation, hide the message
+                      setTimeout(() => {
+                        successMessage?.classList.add('hidden');
+                        successMessage?.classList.remove('fade-out', 'opacity-0');
+                      }, 300);
+                    }, 3000);
+                  } else {
+                    throw new Error('Form submission failed');
+                  }
+                } catch (error) {
+                  console.error('Error:', error);
+                  alert('Sorry, there was a problem submitting your form. Please try again.');
+                }
+              });
+            }
+          </script>
+        </div>
+
+        <div class="md:col-span-2 flex flex-col justify-between">
+          <div class="space-y-6">
+            {contacts.map(({ name, icon: Icon, href, label }) => (
+              <a
+                href={href}
+                rel="noopener noreferrer"
+                target="_blank"
+                class="flex items-center gap-4 group"
+                aria-label={name}
+              >
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 group-hover:border-gray-300 dark:group-hover:border-zinc-600 transition-all duration-300">
+                  <Icon class="w-6 h-6 text-gray-700 dark:text-gray-200" />
+                </div>
+                <div>
+                  <span class="block text-base font-medium text-gray-800 dark:text-gray-200">
+                    {name}
+                  </span>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">
+                    {label}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <a
+            href="/mirzamuric_cv.pdf"
+            download
+            class="group mt-8 flex items-center gap-3 px-4 py-3 rounded-lg bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:border-gray-300 dark:hover:border-zinc-600 transition-all duration-300"
+          >
+            <div class="p-2 rounded-md bg-gray-100 dark:bg-zinc-700">
+              <Download class="w-5 h-5 text-gray-700 dark:text-gray-200" />
+            </div>
+            <div>
+              <span class="block text-base font-medium text-gray-800 dark:text-gray-200">
+                Resume
+              </span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">
+                Download CV
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="text-center space-y-3 max-w-2xl px-4">
+        <p class="text-gray-600 dark:text-gray-300">
+          Available for consultations and interesting projects.
+        </p>
+        <p class="text-gray-600 dark:text-gray-300">
+          Based in Bosnia, available worldwide.
+        </p>
+      </div>
+      
+      <p class="text-gray-500 dark:text-gray-400 text-sm pt-8 border-t border-gray-200 dark:border-zinc-800 w-full text-center">
+        © Mirza Muric
+      </p>
     </div>
   </div>
 </footer>
+
+<style>
+  .button-dark {
+    transition: all 0.2s ease;
+  }
+
+  .button-dark:hover {
+    transform: translateY(-1px);
+    background-color: #1f2937;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .button-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .button-dark:hover::before {
+    left: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button-dark {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+
+  /* Override autofill styles */
+  @media (prefers-color-scheme: light) {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px white inset !important;
+      -webkit-text-fill-color: #1f2937 !important;
+      caret-color: #1f2937 !important;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px rgb(39 39 42) inset !important;
+      -webkit-text-fill-color: #e5e7eb !important;
+      caret-color: #e5e7eb !important;
+    }
+  }
+</style>
+
