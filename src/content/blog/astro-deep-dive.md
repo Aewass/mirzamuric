@@ -1387,32 +1387,52 @@ export default defineConfig({
 
 ## Performance Comparison
 
-| Framework        | Initial JS Bundle | Time to Interactive | SEO       | Development Experience | Build Time | Memory Usage |
-| ---------------- | ----------------- | ------------------- | --------- | ---------------------- | ---------- | ------------ |
-| Astro            | ~0kb (by default) | Very Fast           | Excellent | Excellent              | Fast       | Low          |
-| Next.js          | ~70kb             | Fast                | Good      | Excellent              | Moderate   | Moderate     |
-| Gatsby           | ~150kb            | Moderate            | Good      | Good                   | Slow       | High         |
-| Hugo             | ~0kb              | Very Fast           | Excellent | Good                   | Very Fast  | Very Low     |
-| Eleventy         | ~0kb              | Very Fast           | Excellent | Good                   | Fast       | Very Low     |
-| Create React App | ~150kb            | Slow                | Poor      | Good                   | Fast       | High         |
+### Astro
 
-### Framework Comparison
+- **Initial JS Bundle:** ~0kb (by default)
+- **Time to Interactive:** Very Fast
+- **SEO:** Excellent
+- **Development Experience:** Excellent
+- **Build Time:** Fast
+- **Memory Usage:** Low
 
-Astro differs from other frameworks in several key ways:
+### Next.js
 
-#### vs. Next.js
+- **Initial JS Bundle:** ~70kb
+- **Time to Interactive:** Fast
+- **SEO:** Good
+- **Development Experience:** Excellent
+- **Build Time:** Moderate
+- **Memory Usage:** Moderate
 
-- **Default Approach**: Astro is static by default, Next.js is dynamic by default
-- **JavaScript Usage**: Astro sends zero JS by default, Next.js includes JS for all pages
-- **Component Model**: Astro uses islands architecture, Next.js uses full-page hydration
-- **Learning Curve**: Astro has a gentler learning curve for content-focused sites
+### Gatsby
 
-#### vs. Hugo/Eleventy
+- **Initial JS Bundle:** ~150kb
+- **Time to Interactive:** Moderate
+- **SEO:** Good
+- **Development Experience:** Good
+- **Build Time:** Slow
+- **Memory Usage:** High
 
-- **Component Support**: Astro supports modern UI frameworks, Hugo/Eleventy are template-based
-- **JavaScript Integration**: Astro allows adding JS where needed, Hugo/Eleventy are primarily static
-- **Build Performance**: Hugo is extremely fast for large sites, Astro offers more flexibility
-- **Developer Experience**: Astro provides a more modern development experience
+### Hugo
+
+- **Initial JS Bundle:** ~0kb
+- **Time to Interactive:** Very Fast
+- **SEO:** Excellent
+- **Development Experience:** Good
+- **Build Time:** Very Fast
+- **Memory Usage:** Very Low
+
+### Eleventy
+
+- **Initial JS Bundle:** ~0kb
+- **Time to Interactive:** Very Fast
+- **SEO:** Excellent
+- **Development Experience:** Good
+- **Build Time:** Fast
+- **Memory Usage:** Very Low
+
+> **Note:** These metrics are approximate and may vary based on project size, configuration, and optimization level. The comparison focuses on default configurations and typical use cases.
 
 ## Real-world Performance Metrics
 
